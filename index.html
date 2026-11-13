@@ -16,7 +16,6 @@ body{font-family:Arial;color:#fff;background:#0f1115}
 #loader p span{color:#ff0000}
 #loader .bar{width:90%;max-width:400px;height:14px;background:#222;border-radius:10px;overflow:hidden;margin:14px 0 8px}
 #loader .bar-fill{height:100%;width:0%;background:#ff0000;transition:.3s}
-#loader .load-text{color:#888;font-size:14px}
 .logo{font-size:32px;font-weight:900;text-align:center;padding:12px}
 .logo span{background:#ff0000;padding:4px 12px;border-radius:8px}
 .top-red{background:#ff0000;padding:10px;border-radius:8px;font-weight:900;text-align:center}
@@ -25,57 +24,85 @@ body{font-family:Arial;color:#fff;background:#0f1115}
 .nav button{background:none;border:none;color:#fff;font-weight:700;padding:6px 2px;cursor:pointer;font-size:15px;white-space:nowrap}
 .nav button.active{border-bottom:3px solid #ff0000}
 .box{background:#161920;border-radius:16px;padding:16px;margin:12px 0}
-.box input,.box textarea,.box select{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#000;color:#fff;margin:8px 0}
+.box input,.box textarea,.box select{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#000;color:#fff;margin:8px 0;display:block}
 .box button{width:100%;padding:12px;background:#ff7a00;color:#fff;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin:4px 0}
 .user-card{background:#1a1d24;border-radius:14px;padding:14px;margin:10px 0;display:flex;gap:12px;align-items:center}
 .avatar{width:55px;height:55px;border-radius:50%;background:#ff0000;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;flex-shrink:0;overflow:hidden}
-.avatar img{width:100%;height:100%;object-fit:cover}
-.avatar-small{width:32px;height:32px;border-radius:50%;background:#ff0000;display:inline-flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;margin-right:6px;overflow:hidden;vertical-align:middle}
-.avatar-small img{width:100%;height:100%;object-fit:cover}
 .rank{padding:4px 10px;border-radius:6px;font-size:12px;font-weight:900;border:2px solid #ff0000;color:#ff2222;display:inline-block;margin-top:4px}
 .rank-zam{border-color:#a100ff;color:#c66bff}
 .rank-helper{border-color:#2ecc71;color:#2ecc71}
 .rank-glav{border-color:#ff0000;color:#fff;background:#ff0000}
 .topic{background:#000;border-radius:12px;padding:12px;margin:10px 0;border-left:4px solid #ff7a00}
-.topic.closed{border-left-color:#ff0000}
-.chat-box{height:180px;overflow-y:auto;background:#000;border-radius:12px;padding:10px;margin:10px 0}
-.chat-msg{margin-bottom:10px;display:flex;gap:8px;align-items:flex-start}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:99;padding:16px;overflow-y:auto}
-.modal-inner{max-width:520px;margin:10px auto;background:#161920;border-radius:16px;padding:18px;border:2px solid #ff0000}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:99;padding:12px;overflow-y:auto}
+.modal-inner{max-width:520px;margin:20px auto;background:#161920;border-radius:16px;padding:20px;border:2px solid #ff0000}
+.modal-inner input,.modal-inner textarea,.modal-inner select{width:100%!important;padding:13px!important;border-radius:10px!important;border:1px solid #333!important;background:#000!important;color:#fff!important;margin:8px 0!important;display:block!important;box-sizing:border-box!important}
+.modal-inner button{width:100%!important;padding:13px!important;margin:6px 0!important}
 .small-btn{padding:7px 10px!important;width:auto!important;font-size:12px!important;display:inline-block!important;margin:2px!important}
 .top-bar{font-size:12px;color:#aaa;padding:8px 12px 0;max-width:600px;margin:0 auto}
 .btn-green{background:#2ecc71!important}
 .btn-blue{background:#00aaff!important}
 .btn-give{background:#222!important;border:1px solid #555!important;width:auto!important;padding:8px 12px!important}
+.org-card{display:flex;gap:12px;align-items:center;background:#000;border-radius:14px;padding:14px;margin:10px 0;border:2px solid #333;cursor:pointer}
+.org-icon{font-size:32px;width:58px;height:58px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cat-title{font-size:16px;font-weight:900;margin:18px 0 8px;padding:10px;background:#ff0000;border-radius:8px;text-align:center}
+.cat-gos{background:#0066ff}
+.cat-opg{background:#111;border:2px solid #ff0000}
+.cat-crim{background:#222;border:2px solid #a100ff}
 </style>
 </head>
 <body>
-<div id="loader">
-<div class="logo">KARATEL <span>TEST</span></div>
-<div class="server-btn">СЕРВЕР: KARATEL TEST</div>
-<p>Вы будете перекинуты на форум<br><span>Ожидайте...</span></p>
-<div class="bar"><div class="bar-fill" id="loadBar"></div></div>
-<div class="load-text" id="loadText">Загрузка форума KARATEL TEST... 0%</div>
-</div>
-<div class="top-bar">СЕРВЕР: <b style="color:#ff2222;">KARATEL TEST</b> • Онлайн: <b id="topOnline">1</b> • Игроков: <b id="topPlayers">2</b><br><br><span id="topNick">Wells_ohhotnik</span> <span class="rank" style="margin:0;">РАЗРАБОТЧИК</span> <span style="background:#2ecc71;color:#000;padding:4px 8px;border-radius:6px;font-size:12px;font-weight:900;">● В СЕТИ - НАСТОЯЩИЙ</span></div>
+<div id="loader"><div class="logo">KARATEL <span>TEST</span></div><div class="server-btn">СЕРВЕР: KARATEL TEST</div><p>Вы будете перекинуты на форум<br><span>Ожидайте...</span></p><div class="bar"><div class="bar-fill" id="loadBar"></div></div><div style="color:#888;font-size:14px;" id="loadText">Загрузка... 0%</div></div>
+<div class="top-bar">СЕРВЕР: <b style="color:#ff2222;">KARATEL TEST</b> • Онлайн: <b id="topOnline">1</b> • Игроков: <b id="topPlayers">2</b><br><br><span id="topNick">Wells_ohhotnik</span> <span class="rank" style="margin:0;">РАЗРАБОТЧИК</span> <span style="background:#2ecc71;color:#000;padding:4px 8px;border-radius:6px;font-size:12px;font-weight:900;">● В СЕТИ</span></div>
 <div class="wrap">
 <div class="logo">KARATEL <span>TEST</span></div>
 <div class="top-red">KARATEL TEST</div>
-<input class="search" placeholder="🔍 Поиск по форуму KARATEL TEST...">
+<input class="search" placeholder="🔍 Поиск по форуму...">
 <div class="nav">
+<button onclick="showPage('home',this)" class="active">🏠 Главная</button>
 <button onclick="showPage('admin',this)">Администрация</button>
-<button onclick="showPage('online',this)" class="active">🟢 Кто в сети</button>
-<button onclick="showPage('create',this)">Создать тему</button>
+<button onclick="showPage('online',this)">🟢 Кто в сети</button>
 <button onclick="showPage('profile',this)">Профиль</button>
-<button onclick="showPage('zayavki',this)">📝 Подать заявку</button>
+<button onclick="showPage('zayavki',this)">📝 Заявки</button>
+<button onclick="showPage('povishenie',this)">📈 Повышение</button>
 <button onclick="showPage('news',this)">📰 Новости</button>
 <button onclick="showPage('pravila',this)">📜 Правила</button>
 <button onclick="showPage('zhalobi',this)">⚠️ Жалобы</button>
 </div>
-<div style="color:#aaa;font-size:13px;">Главная / online / Форум</div>
-<div id="page-online"><div class="box"><h2>🟢 КТО В СЕТИ — KARATEL TEST <span style="float:right;font-size:12px;color:#aaa;font-weight:400;">В сети: <span id="onlineCount">1</span> / Настоящих всего: <span id="totalCount">2</span></span></h2><p style="font-size:13px;color:#aaa;margin:8px 0;">🟢 Зелёный — в сети<br>🔴 Красный — не в сети<br>Фейков нет! Только те, кто реально зашёл.</p><div style="display:flex;gap:8px;"><button onclick="showOnlyOnline()" class="btn-green" style="flex:1;">Показать только кто в сети</button><button onclick="loadOnline()" class="btn-blue" style="flex:1;">🔄 Обновить</button></div><div id="onlineList"></div></div></div>
+
+<!-- ГЛАВНАЯ КАК В БЛЕК РАША -->
+<div id="page-home">
+<div class="cat-title">🏛️ ГОСУДАРСТВЕННЫЕ ФРАКЦИИ</div>
+<div class="org-card" style="border-color:#0066ff;" onclick="openFrak('ГИБДД','🚔','#0066ff','Патруль, штрафы, погони','50000')"><div class="org-icon" style="background:#0066ff;">🚔</div><div style="flex:1;"><b>ГИБДД</b><br><span style="font-size:12px;color:#aaa;">Лидер: Вакантно • Зам: Вакантно</span><br><span style="background:#0066ff;padding:3px 8px;border-radius:5px;font-size:11px;font-weight:900;">ОТКРЫТ НАБОР</span></div><div>›</div></div>
+<div class="org-card" style="border-color:#ff0000;" onclick="openFrak('ФСБ','🦅','#ff0000','Спецоперации, секретно','100000')"><div class="org-icon" style="background:#ff0000;">🦅</div><div style="flex:1;"><b>ФСБ</b><br><span style="font-size:12px;color:#aaa;">Директор: Вакантно</span><br><span style="background:#ff0000;padding:3px 8px;border-radius:5px;font-size:11px;font-weight:900;">⚠️ СТРОГИЙ ОТБОР</span></div><div>›</div></div>
+<div class="org-card" style="border-color:#2ecc71;" onclick="openFrak('Армия','🪖','#2ecc71','Защита сервера, военная база','60000')"><div class="org-icon" style="background:#2ecc71;">🪖</div><div style="flex:1;"><b>АРМИЯ</b><br><span style="font-size:12px;color:#aaa;">Генерал: Вакантно</span><br><span style="background:#2ecc71;padding:3px 8px;border-radius:5px;font-size:11px;font-weight:900;">ОТКРЫТ НАБОР</span></div><div>›</div></div>
+<div class="org-card" style="border-color:#ff7a00;" onclick="openFrak('МЧС','🚑','#ff7a00','Спасение, пожары, помощь','45000')"><div class="org-icon" style="background:#ff7a00;">🚑</div><div style="flex:1;"><b>МЧС</b><br><span style="font-size:12px;color:#aaa;">Начальник: Вакантно</span></div><div>›</div></div>
+<div class="org-card" style="border-color:#fff;" onclick="openFrak('Больница','🏥','#ffffff','Лечение игроков','40000')"><div class="org-icon" style="background:#fff;color:#000;">🏥</div><div style="flex:1;"><b>БОЛЬНИЦА</b><br><span style="font-size:12px;color:#aaa;">Главврач: Вакантно</span></div><div>›</div></div>
+<div class="org-card" style="border-color:#00aaff;" onclick="openFrak('СМИ','📰','#00aaff','Новости, эфиры','35000')"><div class="org-icon" style="background:#00aaff;">📰</div><div style="flex:1;"><b>СМИ</b><br><span style="font-size:12px;color:#aaa;">Директор: Вакантно</span></div><div>›</div></div>
+
+<div class="cat-title cat-opg">💀 КРИМИНАЛЬНЫЕ ФРАКЦИИ / ОПГ</div>
+<div class="org-card" style="border-color:#111;background:#0a0a0a;" onclick="openFrak('ОПГ','💀','#111111','Криминал, разборки, бизнес','80000')"><div class="org-icon" style="background:#111;border:2px solid #ff0000;">💀</div><div style="flex:1;"><b>ОПГ - Общая</b><br><span style="font-size:12px;color:#aaa;">Вор в законе: Вакантно</span><br><span style="background:#ff0000;padding:3px 8px;border-radius:5px;font-size:11px;font-weight:900;">ОСТОРОЖНО!</span></div><div>›</div></div>
+<div class="org-card" style="border-color:#a100ff;background:#0f001a;" onclick="openFrak('Лыт Батыр','⚔️','#a100ff','Батыры, сила, честь','90000')"><div class="org-icon" style="background:#a100ff;">⚔️</div><div style="flex:1;"><b>ЛЫТ БАТЫР</b><br><span style="font-size:12px;color:#aaa;">Хан: Вакантно • Легендарная фракция!</span><br><span style="background:#a100ff;padding:3px 8px;border-radius:5px;font-size:11px;font-weight:900;">ЭЛИТА</span></div><div>›</div></div>
+<div class="org-card" style="border-color:#ffcc00;background:#1a1500;" onclick="openFrak('Батыр','🐎','#ffcc00','Казахи, традиции, сила','75000')"><div class="org-icon" style="background:#ffcc00;color:#000;">🐎</div><div style="flex:1;"><b>БАТЫР</b><br><span style="font-size:12px;color:#aaa;">Атаман: Вакантно</span></div><div>›</div></div>
+<div class="org-card" style="border-color:#ff2222;background:#1a0000;" onclick="openFrak('Мафия','🔫','#ff2222','Мафия, крыша, деньги','120000')"><div class="org-icon" style="background:#ff2222;">🔫</div><div style="flex:1;"><b>МАФИЯ</b><br><span style="font-size:12px;color:#aaa;">Дон: Вакантно</span></div><div>›</div></div>
+
+<div class="cat-title" style="background:#222;">📈 ПОВЫШЕНИЕ И ЛИДЕРЫ</div>
+<div class="org-card" onclick="showPage('povishenie',null)"><div class="org-icon" style="background:#2ecc71;">📈</div><div style="flex:1;"><b>ПОВЫШЕНИЕ</b><br><span style="font-size:12px;color:#aaa;">Подать на повышение ранга во фракции</span></div><div>›</div></div>
+<div class="org-card" onclick="showPage('zayavki',null)"><div class="org-icon" style="background:#ff7a00;">👑</div><div style="flex:1;"><b>ЗАЯВКИ НА ЛИДЕРА</b><br><span style="font-size:12px;color:#aaa;">Стать лидером фракции - как в Black Russia</span></div><div>›</div></div>
+
+<div class="box"><h2>🟢 Кто в сети</h2><div id="onlineListHome"></div></div>
+</div>
+
+<div id="page-online" style="display:none;"><div class="box"><h2>🟢 КТО В СЕТИ</h2><div style="display:flex;gap:8px;"><button onclick="showOnlyOnline()" class="btn-green" style="flex:1;">Только в сети</button><button onclick="loadOnline()" class="btn-blue" style="flex:1;">🔄 Обновить</button></div><div id="onlineList"></div></div></div>
 <div id="page-admin" style="display:none;"><div class="box"><h2>👑 Администрация</h2><div id="adminList"></div></div></div>
-<div id="page-create" style="display:none;"><div class="box"><h2>✏️ Создать тему</h2><input id="topicTitle" placeholder="Название темы"><textarea id="topicText" placeholder="Текст темы..." rows="3"></textarea><select id="topicCat"><option>Общее</option><option>Жалобы</option><option>Предложения</option><option>Заявки</option></select><button onclick="createTopic()">Создать тему</button></div><div class="box"><h2>📋 Все темы</h2><div id="allTopics"></div></div></div>
+
+<!-- СТРАНИЦА ФРАКЦИИ -->
+<div id="page-frak" style="display:none;">
+<div class="box" id="frakHeader"><h2 id="frakTitle">Фракция</h2><p id="frakDesc" style="font-size:13px;color:#aaa;"></p><p id="frakSalary" style="font-weight:900;color:#ffcc00;"></p><button id="frakJoinBtn" onclick="openOrgFormFromFrak()">ПОДАТЬ ЗАЯВКУ</button><button onclick="openPovishenieFromFrak()" style="background:#2ecc71!important;">📈 ПОДАТЬ НА ПОВЫШЕНИЕ</button></div>
+<div class="box"><h2>📋 Заявки — видят все!</h2><div id="frakZayavki"></div></div>
+<div class="box"><h2>📈 Повышения — видят все!</h2><div id="frakPovishenie"></div></div>
+<div class="box"><h2>💬 Сообщения фракции</h2><div id="frakChat" style="background:#000;border-radius:12px;padding:10px;min-height:80px;">Пока нет сообщений</div><input id="frakChatInput" placeholder="Написать во фракцию..."><button onclick="sendFrakChat()">Отправить</button></div>
+</div>
+
 <div id="page-profile" style="display:none;">
 <div class="box" style="text-align:center;position:relative;overflow:hidden;">
 <div id="profileBg" style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800') center/cover;opacity:.35;"></div>
@@ -83,89 +110,99 @@ body{font-family:Arial;color:#fff;background:#0f1115}
 <div id="profileAvatar" style="width:110px;height:110px;border-radius:50%;margin:0 auto 10px;background:#333;display:flex;align-items:center;justify-content:center;font-size:40px;overflow:hidden;border:3px solid rgba(255,255,255,.3);">W</div>
 <div style="font-size:26px;font-weight:900;" id="profileName">Wells_ohhotnik</div>
 <span class="rank" id="profileRank">РАЗРАБОТЧИК</span><br><span style="display:inline-block;margin:8px 0;padding:6px 12px;background:#ff0000;border-radius:6px;font-weight:900;font-size:13px;">KARATEL TEST</span>
-<div style="color:#aaa;">Сервер: KARATEL TEST • Без фракции • Без титула</div>
-<div><span style="color:#2ecc71;font-weight:700;">● В сети</span> • Настоящий ник: <b id="profileRealNick">Wells_ohhotnik</b></div><br>
+<div style="color:#aaa;">Фракция: <b id="profileFrak">Без фракции</b> • Ранг: <b id="profileFrakRank">Нет</b></div>
+<div><span style="color:#2ecc71;font-weight:700;">● В сети</span> • Ник: <b id="profileRealNick">Wells_ohhotnik</b></div><br>
 <button onclick="logout()" style="width:auto!important;padding:8px 18px!important;background:#222!important;border-radius:8px!important;">Выйти</button>
 </div>
 </div>
-<div class="box"><h2>⚙️ Мои настройки — KARATEL TEST</h2><div style="display:flex;gap:8px;align-items:center;background:#000;border:1px solid #333;border-radius:10px;padding:10px;margin:8px 0;"><label style="background:#fff;color:#000;padding:6px 10px;border-radius:4px;cursor:pointer;">Выберите файл<input type="file" accept="image/*" onchange="uploadAvatar(this)" style="display:none;"></label><span id="avatarFileName">Файл не выбран</span></div><div style="display:flex;gap:8px;align-items:center;background:#000;border:1px solid #333;border-radius:10px;padding:10px;margin:8px 0;"><label style="background:#fff;color:#000;padding:6px 10px;border-radius:4px;cursor:pointer;">Выберите файл<input type="file" accept="image/*" onchange="uploadBg(this)" style="display:none;"></label><span id="bgFileName">Файл не выбран</span></div><div style="display:flex;gap:8px;align-items:center;background:#000;border:1px solid #333;border-radius:10px;padding:10px;width:fit-content;"><input type="checkbox" id="blackCheck" onchange="toggleBlack(this.checked)"> Чёрный фон</div><input id="nickInput" placeholder="Твой ник"><button onclick="register()">Войти / Сменить ник</button></div>
+<div class="box"><h2>⚙️ Мои настройки</h2><div style="display:flex;gap:8px;align-items:center;background:#000;border:1px solid #333;border-radius:10px;padding:10px;margin:8px 0;"><label style="background:#fff;color:#000;padding:6px 10px;border-radius:4px;cursor:pointer;">Выберите файл<input type="file" accept="image/*" onchange="uploadAvatar(this)" style="display:none;"></label><span id="avatarFileName">Файл не выбран</span></div><div style="display:flex;gap:8px;align-items:center;background:#000;border:1px solid #333;border-radius:10px;padding:10px;margin:8px 0;"><label style="background:#fff;color:#000;padding:6px 10px;border-radius:4px;cursor:pointer;">Выберите файл<input type="file" accept="image/*" onchange="uploadBg(this)" style="display:none;"></label><span id="bgFileName">Файл не выбран</span></div><input id="nickInput" placeholder="Твой ник"><button onclick="register()">Войти / Сменить ник</button></div>
 </div>
-<div id="page-zayavki" style="display:none;"><div class="box"><h2>📝 Подать заявку</h2><button onclick="openZayavkaForm('Администратор')">🛡️ На Администратора</button><button onclick="openZayavkaForm('Хелпер')">💚 На Хелпера</button><button onclick="openZayavkaForm('Модератор')">⚔️ На Модератора</button><button onclick="openZayavkaForm('Зам. Основателя')">👑 На Зам. Основателя</button><button onclick="openZayavkaForm('Лидер')">🏢 На Лидера</button></div><div class="box"><h2>📋 Заявки — видят все!</h2><div id="zayavkaList"></div></div></div>
-<div id="page-news" style="display:none;">
-<div class="box"><h2>📰 Новости KARATEL TEST</h2>
-<div class="topic"><b>🔥 Вышел новый лаунчер 16.23.0!</b><br><span style="font-size:12px;color:#aaa;">Новые машины, новые промокоды! Скачивай на сайте!</span></div>
-<div class="topic"><b>🎁 Промокод KARATEL - 100 000 ₽</b><br><span style="font-size:12px;color:#aaa;">Успей активировать в игре!</span></div>
-<div class="topic"><b>🚗 Новый гараж - BMW M5 F90!</b><br><span style="font-size:12px;color:#aaa;">Уже в игре!</span></div>
-<div class="box"><h3>✏️ Добавить новость (только админ)</h3><input id="newsTitle" placeholder="Заголовок новости"><textarea id="newsText" placeholder="Текст новости..." rows="2"></textarea><button onclick="addNews()">Опубликовать новость</button></div>
-<div id="newsList"></div>
+
+<!-- ЛИДЕР / ЗАЯВКИ -->
+<div id="page-zayavki" style="display:none;">
+<div class="box"><h2>👑 ЗАЯВКИ НА ЛИДЕРА — КАК В BLACK RUSSIA</h2><p style="font-size:13px;color:#aaa;">Выбери фракцию и стань её Лидером! Лидер управляет всей фракцией!</p>
+<button onclick="openZayavkaForm('Лидер ГИБДД')">🚔 На Лидера ГИБДД</button>
+<button onclick="openZayavkaForm('Лидер ФСБ')">🦅 На Лидера ФСБ</button>
+<button onclick="openZayavkaForm('Лидер Армии')">🪖 На Лидера Армии</button>
+<button onclick="openZayavkaForm('Лидер МЧС')">🚑 На Лидера МЧС</button>
+<button onclick="openZayavkaForm('Лидер ОПГ')">💀 На Лидера ОПГ</button>
+<button onclick="openZayavkaForm('Лидер Лыт Батыр')">⚔️ На Лидера Лыт Батыр</button>
+<button onclick="openZayavkaForm('Лидер Батыр')">🐎 На Лидера Батыр</button>
+<button onclick="openZayavkaForm('Лидер Мафии')">🔫 На Лидера Мафии</button>
 </div>
+<div class="box"><h2>🛡️ Заявки на Администрацию</h2><button onclick="openZayavkaForm('Администратор')">🛡️ На Администратора</button><button onclick="openZayavkaForm('Хелпер')">💚 На Хелпера</button><button onclick="openZayavkaForm('Модератор')">⚔️ На Модератора</button><button onclick="openZayavkaForm('Зам. Основателя')">👑 На Зам. Основателя</button></div>
+<div class="box"><h2>📋 Все заявки — видят все!</h2><div id="zayavkaList"></div></div>
 </div>
-<div id="page-pravila" style="display:none;">
-<div class="box"><h2>📜 Правила KARATEL TEST</h2>
-<p style="margin:8px 0;">1. ❌ Не оскорблять игроков и администрацию</p>
-<p style="margin:8px 0;">2. ❌ Не читерить, не использовать софт</p>
-<p style="margin:8px 0;">3. ❌ Не спамить в чате и на форуме</p>
-<p style="margin:8px 0;">4. ❌ Не рекламировать другие проекты</p>
-<p style="margin:8px 0;">5. ✅ Слушаться администрацию</p>
-<p style="margin:8px 0;">6. ✅ Уважать всех игроков</p>
-<p style="margin:8px 0;color:#ff4444;font-weight:900;">За нарушение - МУТ / БАН!</p>
+
+<!-- ПОВЫШЕНИЕ -->
+<div id="page-povishenie" style="display:none;">
+<div class="box" style="border:2px solid #2ecc71;"><h2>📈 ПОВЫШЕНИЕ — КАК В BLACK RUSSIA</h2><p style="font-size:13px;color:#aaa;">Уже во фракции? Подай на повышение ранга!<br>Ранги: 1. Новичок → 2. Боец → 3. Старший → 4. Зам. Лидера → 5. Лидер</p>
+<button onclick="openPovishenieForm()" style="background:#2ecc71!important;">📈 ПОДАТЬ НА ПОВЫШЕНИЕ</button></div>
+<div class="box"><h2>📋 Все повышения — видят все!</h2><div id="povishenieList"></div></div>
 </div>
-</div>
-<div id="page-zhalobi" style="display:none;">
-<div class="box"><h2>⚠️ Жалобы</h2>
-<input id="zhalobaNick" placeholder="На кого жалоба? Ник">
-<textarea id="zhalobaText" placeholder="Что случилось? Опиши подробно..." rows="3"></textarea>
-<button onclick="sendZhaloba()">Отправить жалобу</button>
-</div>
-<div class="box"><h2>📋 Все жалобы — видят все!</h2><div id="zhalobaList"></div></div>
-</div>
+
+<div id="page-news" style="display:none;"><div class="box"><h2>📰 Новости</h2><div class="topic"><b>🔥 Вышел лаунчер 16.23.0!</b></div><div class="box"><h3>Добавить новость (админ)</h3><input id="newsTitle" placeholder="Заголовок"><textarea id="newsText" placeholder="Текст..." rows="2"></textarea><button onclick="addNews()">Опубликовать</button></div><div id="newsList"></div></div></div>
+<div id="page-pravila" style="display:none;"><div class="box"><h2>📜 Правила</h2><p>1. ❌ Не оскорблять</p><p>2. ❌ Не читерить</p><p>3. ❌ Не спамить</p><p>4. ✅ Слушаться администрацию</p><p style="color:#ff4444;font-weight:900;">Нарушение - МУТ / БАН!</p></div></div>
+<div id="page-zhalobi" style="display:none;"><div class="box"><h2>⚠️ Жалобы</h2><input id="zhalobaNick" placeholder="На кого?"><textarea id="zhalobaText" placeholder="Что случилось?" rows="3"></textarea><button onclick="sendZhaloba()">Отправить жалобу</button></div><div class="box"><h2>📋 Все жалобы</h2><div id="zhalobaList"></div></div></div>
 <p style="font-size:12px;color:#888;text-align:center;margin-top:12px;">© 2026 KARATEL TEST — ФОРУМ</p>
 </div>
+
 <div class="modal" id="modalRank"><div class="modal-inner"><h2>Дать ранг — <span id="rankTarget"></span></h2><select id="rankSelect"><option>Игрок</option><option>Хелпер</option><option>Модератор</option><option>Администратор</option><option>Главный Администратор</option><option>Зам. Основателя</option><option>Разработчик</option></select><button onclick="doGiveRank()">Дать ранг</button><button onclick="closeModal()" style="background:#333;">Закрыть</button></div></div>
-<div class="modal" id="modalZayavka"><div class="modal-inner"><h2 id="zayavkaTitle">📝 Подать заявку</h2><input id="zNick" placeholder="Твой ник"><input id="zAge" placeholder="Твой возраст"><textarea id="zWhy" placeholder="Почему именно ты?" rows="3"></textarea><button onclick="sendZayavka()">Отправить заявку</button><button onclick="closeModal()" style="background:#333;">Закрыть</button></div></div>
-<div class="modal" id="modalTopic"><div class="modal-inner"><h2 id="topicModalTitle"></h2><div id="topicModalBody"></div><div id="topicModalChat" class="chat-box"></div><div id="topicReplyBox"><input id="topicReplyInput" placeholder="Написать в тему..."><button onclick="sendTopicReply()">Отправить</button></div><p id="topicClosedMsg" style="display:none;color:#ff4444;font-weight:900;">🔒 Тема закрыта!</p><div id="topicAdminBtns"></div><button onclick="closeModal()" style="background:#333;margin-top:10px;">Закрыть</button></div></div>
+
+<div class="modal" id="modalZayavka"><div class="modal-inner"><h2 id="zayavkaTitle">📝 Подать заявку</h2><p style="font-size:13px;color:#aaa;">Заявка как в Black Russia — заполни всё честно!</p><input id="zNick" placeholder="1. Твой ник"><input id="zAge" placeholder="2. Твой возраст"><input id="zLevel" placeholder="3. Твой уровень"><input id="zOnline" placeholder="4. Онлайн в день (часов)"><textarea id="zWhy" placeholder="5. Почему именно ты должен стать Лидером?" rows="4"></textarea><textarea id="zPlan" placeholder="6. Твои планы на фракцию?" rows="3"></textarea><button onclick="sendZayavka()">Отправить заявку на Лидера</button><button onclick="closeModal()" style="background:#333;">Закрыть</button></div></div>
+
+<div class="modal" id="modalOrg"><div class="modal-inner"><h2 id="orgTitle">Подать заявку</h2><p id="orgDesc" style="font-size:13px;color:#aaa;"></p><input id="orgNick" placeholder="1. Ваш ник"><input id="orgAge" placeholder="2. Ваш возраст"><input id="orgLevel" placeholder="3. Ваш уровень"><input id="orgOnline" placeholder="4. Онлайн в день"><textarea id="orgWhy" placeholder="5. Почему в эту фракцию?" rows="3"></textarea><textarea id="orgRules" placeholder="6. Знаешь правила?" rows="2"></textarea><button id="orgSendBtn" onclick="sendOrgZayavka()">Отправить заявку</button><button onclick="closeModal()" style="background:#333;">Закрыть</button></div></div>
+
+<div class="modal" id="modalPovish"><div class="modal-inner"><h2>📈 Подать на повышение</h2><p style="font-size:13px;color:#aaa;">Black Russia стиль — повышение по рангам!</p><input id="pNick" placeholder="1. Твой ник"><select id="pFrak"><option>ГИБДД</option><option>ФСБ</option><option>Армия</option><option>МЧС</option><option>Больница</option><option>СМИ</option><option>ОПГ</option><option>Лыт Батыр</option><option>Батыр</option><option>Мафия</option></select><input id="pNow" placeholder="2. Твой текущий ранг (пример: Новичок)"><input id="pWant" placeholder="3. На какой ранг хочешь? (пример: Боец)"><input id="pTime" placeholder="4. Сколько дней во фракции?"><textarea id="pWhy" placeholder="5. Почему тебя повысить? Что сделал для фракции?" rows="4"></textarea><button onclick="sendPovishenie()" style="background:#2ecc71!important;">Отправить на повышение</button><button onclick="closeModal()" style="background:#333;">Закрыть</button></div></div>
+
 <script>
 const DB="https://karatel-test-d4905-default-rtdb.firebaseio.com";
-let prog=0; let li=setInterval(()=>{ prog+=Math.floor(Math.random()*12)+4; if(prog>=100){ prog=100; clearInterval(li); setTimeout(()=>{ document.getElementById('loader').style.display='none'; },400); } document.getElementById('loadBar').style.width=prog+'%'; document.getElementById('loadText').innerText='Загрузка форума KARATEL TEST... '+prog+'%'; },300);
+let prog=0; let li=setInterval(()=>{ prog+=Math.floor(Math.random()*12)+4; if(prog>=100){ prog=100; clearInterval(li); setTimeout(()=>{ document.getElementById('loader').style.display='none'; },400); } document.getElementById('loadBar').style.width=prog+'%'; document.getElementById('loadText').innerText='Загрузка... '+prog+'%'; },300);
 function rankClass(r){ if(r==="Разработчик")return "rank"; if(r==="Основатель")return "rank"; if(r==="Зам. Основателя")return "rank rank-zam"; if(r==="Администратор"||r==="Главный Администратор")return "rank rank-glav"; if(r==="Хелпер"||r==="Модератор")return "rank rank-helper"; return "rank"; }
 function getMyRank(){ return localStorage.getItem('karatel_rank')||"Игрок"; }
 function getMyNick(){ return localStorage.getItem('karatel_nick')||""; }
 function isAdmin(){ return ["Основатель","Разработчик","Зам. Основателя","Администратор","Главный Администратор"].includes(getMyRank()); }
 if(!localStorage.getItem('karatel_nick')){ localStorage.setItem('karatel_nick','Wells_ohhotnik'); localStorage.setItem('karatel_rank','Разработчик'); }
-if(localStorage.getItem('karatel_black')==='1'){ document.body.style.background='#000'; }
-function toggleBlack(on){ document.body.style.background=on?'#000':'#0f1115'; localStorage.setItem('karatel_black',on?'1':'0'); }
-function updateProfileUI(){ let nick=getMyNick()||"Wells_ohhotnik"; let rank=getMyRank(); document.getElementById('profileName').innerText=nick; document.getElementById('profileRealNick').innerText=nick; document.getElementById('profileRank').innerText=rank.toUpperCase(); document.getElementById('topNick').innerText=nick; let av=localStorage.getItem('avatar_'+nick); document.getElementById('profileAvatar').innerHTML=av?`<img src="${av}" style="width:100%;height:100%;object-fit:cover;">`:nick[0].toUpperCase(); let bg=localStorage.getItem('bg_'+nick); if(bg) document.getElementById('profileBg').innerHTML=`<img src="${bg}" style="width:100%;height:100%;object-fit:cover;">`; document.getElementById('nickInput').value=nick; }
-function uploadAvatar(input){ let f=input.files[0]; if(!f) return; document.getElementById('avatarFileName').innerText=f.name; let r=new FileReader(); r.onload=function(e){ let nick=getMyNick(); localStorage.setItem('avatar_'+nick,e.target.result); fetch(DB+"/avatars.json",{method:"POST",body:JSON.stringify({nick:nick,avatar:e.target.result,time:Date.now()})}); updateProfileUI(); loadOnline(); }; r.readAsDataURL(f); }
+function updateProfileUI(){ let nick=getMyNick()||"Wells_ohhotnik"; let rank=getMyRank(); document.getElementById('profileName').innerText=nick; document.getElementById('profileRealNick').innerText=nick; document.getElementById('profileRank').innerText=rank.toUpperCase(); document.getElementById('topNick').innerText=nick; let av=localStorage.getItem('avatar_'+nick); document.getElementById('profileAvatar').innerHTML=av?`<img src="${av}">`:nick[0].toUpperCase(); let bg=localStorage.getItem('bg_'+nick); if(bg) document.getElementById('profileBg').innerHTML=`<img src="${bg}" style="width:100%;height:100%;object-fit:cover;">`; document.getElementById('nickInput').value=nick; document.getElementById('profileFrak').innerText=localStorage.getItem('karatel_frak')||"Без фракции"; document.getElementById('profileFrakRank').innerText=localStorage.getItem('karatel_frak_rank')||"Нет"; }
+function uploadAvatar(input){ let f=input.files[0]; if(!f) return; document.getElementById('avatarFileName').innerText=f.name; let r=new FileReader(); r.onload=function(e){ localStorage.setItem('avatar_'+getMyNick(),e.target.result); updateProfileUI(); loadOnline(); }; r.readAsDataURL(f); }
 function uploadBg(input){ let f=input.files[0]; if(!f) return; document.getElementById('bgFileName').innerText=f.name; let r=new FileReader(); r.onload=function(e){ localStorage.setItem('bg_'+getMyNick(),e.target.result); updateProfileUI(); }; r.readAsDataURL(f); }
 function logout(){ localStorage.setItem('karatel_nick','Гость'); localStorage.setItem('karatel_rank','Игрок'); updateProfileUI(); }
-function showPage(p,el){ document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); if(el)el.classList.add('active'); ['online','admin','create','profile','zayavki','news','pravila','zhalobi'].forEach(x=>{ document.getElementById('page-'+x).style.display=(x===p?'block':'none'); }); if(p==='online') loadOnline(); if(p==='admin') loadAdmin(); if(p==='create') loadTopics(); if(p==='zayavki') loadZayavki(); if(p==='news') loadNews(); if(p==='zhalobi') loadZhalobi(); if(p==='profile') updateProfileUI(); }
-function closeModal(){ document.getElementById('modalZayavka').style.display='none'; document.getElementById('modalTopic').style.display='none'; document.getElementById('modalRank').style.display='none'; }
-function register(){ let nick=document.getElementById('nickInput').value.trim(); if(!nick) return alert('Введи ник!'); localStorage.setItem('karatel_nick',nick); let low=nick.toLowerCase(); if(low.includes('wells')||low.includes('ohhotnik')||low.includes('aks')||low.includes('акс')) localStorage.setItem('karatel_rank','Разработчик'); else if(low.includes('eva')||low.includes('marlowa')) localStorage.setItem('karatel_rank','Разработчик'); else if(!localStorage.getItem('karatel_rank')) localStorage.setItem('karatel_rank','Игрок'); fetch(DB+"/online.json",{method:"POST",body:JSON.stringify({nick:nick,rank:getMyRank(),time:Date.now()})}); alert('Привет, '+nick); updateProfileUI(); loadOnline(); }
+let currentFrak="ГИБДД", currentFrakColor="#0066ff", currentFrakIcon="🚔";
+function openFrak(name,icon,color,desc,salary){ currentFrak=name; currentFrakColor=color; currentFrakIcon=icon; document.getElementById('frakTitle').innerText=icon+" "+name; document.getElementById('frakDesc').innerText=desc; document.getElementById('frakSalary').innerText="💰 Зарплата: "+salary+" ₽ / час"; document.getElementById('frakJoinBtn').style.background=color+"!important"; document.getElementById('frakJoinBtn').innerText="ПОДАТЬ ЗАЯВКУ В "+name; showPage('frak',null); loadFrakData(); }
+function openOrgFormFromFrak(){ openOrgForm(currentFrak); }
+function openPovishenieFromFrak(){ document.getElementById('pFrak').value=currentFrak; openPovishenieForm(); }
+function showPage(p,el){ document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); if(el)el.classList.add('active'); ['home','online','admin','frak','profile','zayavki','povishenie','news','pravila','zhalobi'].forEach(x=>{ let e=document.getElementById('page-'+x); if(e) e.style.display=(x===p?'block':'none'); }); if(p==='online') loadOnline(); if(p==='admin') loadAdmin(); if(p==='zayavki') loadZayavki(); if(p==='povishenie') loadPovishenie(); if(p==='news') loadNews(); if(p==='zhalobi') loadZhalobi(); if(p==='profile') updateProfileUI(); if(p==='home') loadOnline(); }
+function closeModal(){ document.querySelectorAll('.modal').forEach(m=>m.style.display='none'); }
+function register(){ let nick=document.getElementById('nickInput').value.trim(); if(!nick) return alert('Введи ник!'); localStorage.setItem('karatel_nick',nick); let low=nick.toLowerCase(); if(low.includes('wells')||low.includes('ohhotnik')||low.includes('aks')) localStorage.setItem('karatel_rank','Разработчик'); else if(low.includes('eva')||low.includes('marlowa')) localStorage.setItem('karatel_rank','Разработчик'); else if(!localStorage.getItem('karatel_rank')) localStorage.setItem('karatel_rank','Игрок'); fetch(DB+"/online.json",{method:"POST",body:JSON.stringify({nick:nick,rank:getMyRank(),time:Date.now()})}); alert('Привет, '+nick); updateProfileUI(); loadOnline(); }
 updateProfileUI();
 let onlyOnline=false;
 function showOnlyOnline(){ onlyOnline=!onlyOnline; loadOnline(); }
-async function loadOnline(){ let list=document.getElementById('onlineList'); let base=[{nick:"Gleb_Shuziki",rank:"Разработчик",online:false},{nick:"Im_Slatt",rank:"Главный Администратор",online:false}]; try{ let r=await fetch(DB+"/online.json"); let d=await r.json()||{}; Object.values(d).slice(-20).forEach(u=>{ if(!base.find(b=>b.nick===u.nick)) base.push({nick:u.nick,rank:u.rank||"Игрок",online:true}); else { let f=base.find(b=>b.nick===u.nick); f.online=true; } }); }catch(e){} let me=getMyNick(); if(me && me!=="Гость" && !base.find(b=>b.nick===me)) base.push({nick:me,rank:getMyRank(),online:true}); let show=onlyOnline?base.filter(u=>u.online):base; let onlineCount=base.filter(u=>u.online).length; document.getElementById('onlineCount').innerText=onlineCount; document.getElementById('totalCount').innerText=base.length; document.getElementById('topOnline').innerText=onlineCount; document.getElementById('topPlayers').innerText=base.length; list.innerHTML=show.map(u=>{ let av=localStorage.getItem('avatar_'+u.nick); let avHtml=av?`<div class="avatar"><img src="${av}"></div>`:`<div class="avatar">${u.nick[0].toUpperCase()}</div>`; let giveBtn=isAdmin()?`<button class="btn-give" onclick="openRank('${u.nick}')">Дать ранг</button>`:""; return `<div class="user-card">${avHtml}<div style="flex:1;"><b style="font-size:17px;">${u.nick} <span style="color:#2ecc71;font-size:12px;font-weight:400;">настоящий</span></b><br><span style="color:${u.online?'#2ecc71':'#ff2222'};font-size:13px;">${u.online?'● В сети':'● Не в сети'}</span><br><span class="${rankClass(u.rank)}">${u.rank.toUpperCase()}</span></div>${giveBtn}</div>`; }).join(''); }
+async function loadOnline(){ let list=document.getElementById('onlineList'); let base=[{nick:"Gleb_Shuziki",rank:"Разработчик",online:false},{nick:"Im_Slatt",rank:"Главный Администратор",online:false}]; try{ let r=await fetch(DB+"/online.json"); let d=await r.json()||{}; Object.values(d).slice(-20).forEach(u=>{ if(!base.find(b=>b.nick===u.nick)) base.push({nick:u.nick,rank:u.rank||"Игрок",online:true}); else { let f=base.find(b=>b.nick===u.nick); f.online=true; } }); }catch(e){} let me=getMyNick(); if(me && me!=="Гость" && !base.find(b=>b.nick===me)) base.push({nick:me,rank:getMyRank(),online:true}); let show=onlyOnline?base.filter(u=>u.online):base; let onlineCount=base.filter(u=>u.online).length; let html=show.map(u=>{ let av=localStorage.getItem('avatar_'+u.nick); let avHtml=av?`<div class="avatar"><img src="${av}" style="width:100%;height:100%;object-fit:cover;"></div>`:`<div class="avatar">${u.nick[0].toUpperCase()}</div>`; let giveBtn=isAdmin()?`<button class="btn-give" onclick="openRank('${u.nick}')">Дать ранг</button>`:""; return `<div class="user-card">${avHtml}<div style="flex:1;"><b>${u.nick}</b><br><span style="color:${u.online?'#2ecc71':'#ff2222'};font-size:13px;">${u.online?'● В сети':'● Не в сети'}</span><br><span class="${rankClass(u.rank)}">${u.rank.toUpperCase()}</span></div>${giveBtn}</div>`; }).join(''); if(list) list.innerHTML=html; document.getElementById('onlineListHome').innerHTML=html; document.getElementById('topOnline').innerText=onlineCount; document.getElementById('topPlayers').innerText=base.length; }
 let rankTargetNick="";
 function openRank(nick){ if(!isAdmin()) return alert('Только администрация!'); rankTargetNick=nick; document.getElementById('rankTarget').innerText=nick; document.getElementById('modalRank').style.display='block'; }
 async function doGiveRank(){ let rank=document.getElementById('rankSelect').value; await fetch(DB+"/ranks.json",{method:"POST",body:JSON.stringify({nick:rankTargetNick,rank:rank,time:Date.now()})}); alert(rankTargetNick+" получил "+rank); closeModal(); loadOnline(); }
 async function loadAdmin(){ document.getElementById('adminList').innerHTML=`<div class="user-card"><div class="avatar">W</div><div><b>Wells_ohhotnik</b><br><span class="rank">РАЗРАБОТЧИК</span></div></div><div class="user-card"><div class="avatar">E</div><div><b>Eva_Marlowa</b><br><span class="rank">РАЗРАБОТЧИК</span></div></div>`; }
-async function createTopic(){ let title=document.getElementById('topicTitle').value.trim(); let text=document.getElementById('topicText').value.trim(); let cat=document.getElementById('topicCat').value; if(!title) return alert('Введи название!'); await fetch(DB+"/topics.json",{method:"POST",body:JSON.stringify({title:title,text:text,cat:cat,author:getMyNick()||"Гость",rank:getMyRank(),closed:false,time:Date.now()})}); alert('Тема создана!'); document.getElementById('topicTitle').value=""; document.getElementById('topicText').value=""; loadTopics(); }
-async function loadTopics(){ let box=document.getElementById('allTopics'); let r=await fetch(DB+"/topics.json"); let data=await r.json()||{}; let entries=Object.entries(data); if(!entries.length){ box.innerHTML="Пока нет тем"; return; } box.innerHTML=entries.reverse().map(([id,t])=>`<div class="topic ${t.closed?'closed':''}" onclick="openTopic('${id}')"><b>${t.title}</b> ${t.closed?'<span style="color:#ff4444;">🔒 ЗАКРЫТА</span>':''}<br><span style="font-size:12px;color:#aaa;">Автор: ${t.author} | ${t.cat} | ${t.text||""}</span></div>`).join(''); }
-let currentTopicId=null;
-async function openTopic(id){ currentTopicId=id; let r=await fetch(DB+"/topics/"+id+".json"); let t=await r.json(); document.getElementById('topicModalTitle').innerText=t.title+(t.closed?" 🔒 ЗАКРЫТА":""); document.getElementById('topicModalBody').innerHTML=`<p>${t.text||""}</p><p style="font-size:12px;color:#aaa;">Автор: ${t.author}</p>`; if(t.closed){ document.getElementById('topicReplyBox').style.display='none'; document.getElementById('topicClosedMsg').style.display='block'; } else { document.getElementById('topicReplyBox').style.display='block'; document.getElementById('topicClosedMsg').style.display='none'; } if(isAdmin()){ document.getElementById('topicAdminBtns').innerHTML=t.closed?`<button onclick="toggleTopic('${id}',false)">🔓 Открыть тему</button>`:`<button onclick="toggleTopic('${id}',true)" style="background:#ff0000;">🔒 Закрыть тему</button>`; } else document.getElementById('topicAdminBtns').innerHTML=""; document.getElementById('modalTopic').style.display='block'; }
-async function toggleTopic(id,close){ if(!isAdmin()) return alert('Только администрация!'); await fetch(DB+"/topics/"+id+".json",{method:"PATCH",body:JSON.stringify({closed:close})}); alert(close?"Тема закрыта!":"Тема открыта!"); closeModal(); loadTopics(); }
-async function sendTopicReply(){ let inp=document.getElementById('topicReplyInput'); let txt=inp.value.trim(); if(!txt) return; let r=await fetch(DB+"/topics/"+currentTopicId+".json"); let t=await r.json(); if(t.closed) return alert('Тема закрыта!'); alert('Отправлено: '+txt); inp.value=""; }
 let currentZayavka="Администратор";
-function openZayavkaForm(type){ currentZayavka=type; document.getElementById('zayavkaTitle').innerText="📝 Подать заявку — "+type; document.getElementById('zNick').value=getMyNick(); document.getElementById('modalZayavka').style.display='block'; }
-async function sendZayavka(){ let nick=document.getElementById('zNick').value.trim(); let age=document.getElementById('zAge').value.trim(); let why=document.getElementById('zWhy').value.trim(); if(!nick||!why) return alert('Заполни!'); await fetch(DB+"/zayavki.json",{method:"POST",body:JSON.stringify({nick:nick,age:age,why:why,type:currentZayavka,status:"На рассмотрении",closed:false,time:Date.now()})}); alert('Заявка отправлена!'); closeModal(); loadZayavki(); }
-async function loadZayavki(){ let box=document.getElementById('zayavkaList'); let r=await fetch(DB+"/zayavki.json"); let data=await r.json()||{}; let entries=Object.entries(data); if(!entries.length){ box.innerHTML="Пока нет заявок"; return; } box.innerHTML=entries.reverse().map(([id,z])=>{ let btns=isAdmin()?`<br><button class="small-btn" onclick="answerZayavka('${id}','${z.nick}','${z.type}','Одобрено')">✅ Одобрить</button><button class="small-btn" style="background:#ff0000!important;" onclick="answerZayavka('${id}','${z.nick}','${z.type}','Отклонено')">❌ Отклонить</button><button class="small-btn" style="background:#333!important;" onclick="closeZayavka('${id}')">🔒 Закрыть</button>`:""; return `<div class="topic ${z.closed?'closed':''}"><b>${z.nick}</b> — хочет: ${z.type}<br>Возраст: ${z.age}<br>Причина: ${z.why}<br>Статус: <b>${z.status}</b>${btns}</div>`; }).join(''); }
-async function answerZayavka(id,nick,type,status){ if(!isAdmin()) return alert('Только администрация!'); await fetch(DB+"/zayavki/"+id+".json",{method:"PATCH",body:JSON.stringify({status:status})}); loadZayavki(); }
-async function closeZayavka(id){ if(!isAdmin()) return alert('Только администрация!'); await fetch(DB+"/zayavki/"+id+".json",{method:"PATCH",body:JSON.stringify({closed:true,status:"Закрыта"})}); loadZayavki(); }
+function openZayavkaForm(type){ currentZayavka=type; document.getElementById('zayavkaTitle').innerText="👑 Подать заявку — "+type; document.getElementById('zNick').value=getMyNick(); document.getElementById('modalZayavka').style.display='block'; }
+async function sendZayavka(){ let nick=document.getElementById('zNick').value.trim(); let age=document.getElementById('zAge').value.trim(); let lvl=document.getElementById('zLevel').value.trim(); let onl=document.getElementById('zOnline').value.trim(); let why=document.getElementById('zWhy').value.trim(); let plan=document.getElementById('zPlan').value.trim(); if(!nick||!why) return alert('Заполни!'); await fetch(DB+"/zayavki.json",{method:"POST",body:JSON.stringify({nick:nick,age:age,level:lvl,online:onl,why:why,plan:plan,type:currentZayavka,status:"На рассмотрении",time:Date.now()})}); alert('Заявка на '+currentZayavka+' отправлена!'); closeModal(); loadZayavki(); }
+async function loadZayavki(){ let box=document.getElementById('zayavkaList'); let r=await fetch(DB+"/zayavki.json"); let data=await r.json()||{}; let entries=Object.entries(data); if(!entries.length){ box.innerHTML="Пока нет заявок"; return; } box.innerHTML=entries.reverse().map(([id,z])=>{ let btns=isAdmin()?`<br><button class="small-btn" onclick="answerZayavka('${id}','Одобрено')">✅ Одобрить</button><button class="small-btn" style="background:#ff0000!important;" onclick="answerZayavka('${id}','Отклонено')">❌ Отклонить</button>`:""; return `<div class="topic"><b>${z.nick}</b> — хочет: ${z.type}<br>Возраст: ${z.age} | Уровень: ${z.level} | Онлайн: ${z.online}<br>Почему: ${z.why}<br>Планы: ${z.plan||""}<br>Статус: <b>${z.status}</b>${btns}</div>`; }).join(''); }
+async function answerZayavka(id,status){ if(!isAdmin()) return alert('Только администрация!'); await fetch(DB+"/zayavki/"+id+".json",{method:"PATCH",body:JSON.stringify({status:status})}); loadZayavki(); }
+function openPovishenieForm(){ document.getElementById('pNick').value=getMyNick(); document.getElementById('modalPovish').style.display='block'; }
+async function sendPovishenie(){ let nick=document.getElementById('pNick').value.trim(); let frak=document.getElementById('pFrak').value; let now=document.getElementById('pNow').value.trim(); let want=document.getElementById('pWant').value.trim(); let time=document.getElementById('pTime').value.trim(); let why=document.getElementById('pWhy').value.trim(); if(!nick||!why) return alert('Заполни!'); await fetch(DB+"/povishenie.json",{method:"POST",body:JSON.stringify({nick:nick,frak:frak,now:now,want:want,time:time,why:why,status:"На рассмотрении",time2:Date.now()})}); alert('Заявка на повышение отправлена!'); closeModal(); loadPovishenie(); }
+async function loadPovishenie(){ let box=document.getElementById('povishenieList'); let r=await fetch(DB+"/povishenie.json"); let d=await r.json()||{}; let e=Object.entries(d); if(!e.length){ box.innerHTML="Пока нет заявок на повышение"; return; } box.innerHTML=e.reverse().map(([id,z])=>{ let btns=isAdmin()?`<br><button class="small-btn" onclick="answerPovish('${id}','Одобрено')">✅ Повысить</button><button class="small-btn" style="background:#ff0000!important;" onclick="answerPovish('${id}','Отклонено')">❌ Отклонить</button>`:""; return `<div class="topic" style="border-left-color:#2ecc71;"><b>${z.nick}</b> — ${z.frak}<br>${z.now} → <b style="color:#2ecc71;">${z.want}</b><br>Дней во фракции: ${z.time}<br>Почему: ${z.why}<br>Статус: <b>${z.status}</b>${btns}</div>`; }).join(''); }
+async function answerPovish(id,status){ if(!isAdmin()) return alert('Только администрация!'); await fetch(DB+"/povishenie/"+id+".json",{method:"PATCH",body:JSON.stringify({status:status})}); loadPovishenie(); }
+let currentOrg="ГИБДД";
+function openOrgForm(org){ currentOrg=org; document.getElementById('orgTitle').innerText="Подать заявку — "+org; document.getElementById('orgDesc').innerText="Фракция "+org+" — заполни как в Black Russia!"; document.getElementById('orgNick').value=getMyNick(); document.getElementById('modalOrg').style.display='block'; }
+async function sendOrgZayavka(){ let nick=document.getElementById('orgNick').value.trim(); let age=document.getElementById('orgAge').value.trim(); let lvl=document.getElementById('orgLevel').value.trim(); let onl=document.getElementById('orgOnline').value.trim(); let why=document.getElementById('orgWhy').value.trim(); let rules=document.getElementById('orgRules').value.trim(); if(!nick||!why) return alert('Заполни!'); let key="frak_"+currentOrg; await fetch(DB+"/"+key+".json",{method:"POST",body:JSON.stringify({nick:nick,age:age,level:lvl,online:onl,why:why,rules:rules,org:currentOrg,status:"На рассмотрении",time:Date.now()})}); alert('Заявка в '+currentOrg+' отправлена!'); closeModal(); loadFrakData(); }
+async function loadFrakData(){ let key="frak_"+currentFrak; let box=document.getElementById('frakZayavki'); let r=await fetch(DB+"/"+key+".json"); let d=await r.json()||{}; let e=Object.entries(d); if(!e.length){ box.innerHTML="Пока нет заявок в "+currentFrak; } else { box.innerHTML=e.reverse().map(([id,z])=>{ let btns=isAdmin()?`<br><button class="small-btn" onclick="answerFrak('${key}','${id}','Одобрено')">✅ Принять</button><button class="small-btn" style="background:#ff0000!important;" onclick="answerFrak('${key}','${id}','Отклонено')">❌ Отклонить</button>`:""; return `<div class="topic"><b>${z.nick}</b><br>Возраст: ${z.age} | Уровень: ${z.level} | Онлайн: ${z.online}<br>Почему: ${z.why}<br>Статус: <b>${z.status}</b>${btns}</div>`; }).join(''); } let rp=await fetch(DB+"/povishenie.json"); let pd=await rp.json()||{}; let pe=Object.entries(pd).filter(([id,z])=>z.frak===currentFrak); document.getElementById('frakPovishenie').innerHTML=pe.length?pe.reverse().map(([id,z])=>`<div class="topic" style="border-left-color:#2ecc71;"><b>${z.nick}</b> — ${z.now} → ${z.want} | ${z.status}</div>`).join(''):"Пока нет повышений в "+currentFrak; loadFrakChat(); }
+async function answerFrak(key,id,status){ if(!isAdmin()) return alert('Только администрация!'); await fetch(DB+"/"+key+"/"+id+".json",{method:"PATCH",body:JSON.stringify({status:status})}); loadFrakData(); }
+async function sendFrakChat(){ let inp=document.getElementById('frakChatInput'); let txt=inp.value.trim(); if(!txt) return; await fetch(DB+"/chat_frak_"+currentFrak+".json",{method:"POST",body:JSON.stringify({name:getMyNick()||"Гость",text:txt,time:Date.now()})}); inp.value=""; loadFrakChat(); }
+async function loadFrakChat(){ let box=document.getElementById('frakChat'); try{ let r=await fetch(DB+"/chat_frak_"+currentFrak+".json"); let d=await r.json()||{}; let arr=Object.values(d).slice(-20); if(!arr.length){ box.innerHTML="Пока нет сообщений"; return; } box.innerHTML=arr.map(m=>`<div style="margin-bottom:8px;"><b>${m.name}:</b> ${m.text}</div>`).join(''); }catch(e){} }
 async function addNews(){ if(!isAdmin()) return alert('Только администрация!'); let t=document.getElementById('newsTitle').value.trim(); let txt=document.getElementById('newsText').value.trim(); if(!t) return alert('Введи заголовок!'); await fetch(DB+"/news.json",{method:"POST",body:JSON.stringify({title:t,text:txt,author:getMyNick(),time:Date.now()})}); document.getElementById('newsTitle').value=""; document.getElementById('newsText').value=""; loadNews(); }
-async function loadNews(){ let box=document.getElementById('newsList'); let r=await fetch(DB+"/news.json"); let d=await r.json()||{}; let e=Object.entries(d); if(!e.length){ box.innerHTML=""; return; } box.innerHTML=e.reverse().map(([id,n])=>`<div class="topic"><b>${n.title}</b><br><span style="font-size:12px;color:#aaa;">${n.text||""} | Автор: ${n.author}</span></div>`).join(''); }
-async function sendZhaloba(){ let nick=document.getElementById('zhalobaNick').value.trim(); let txt=document.getElementById('zhalobaText').value.trim(); if(!nick||!txt) return alert('Заполни всё!'); await fetch(DB+"/zhalobi.json",{method:"POST",body:JSON.stringify({from:getMyNick()||"Гость",on:nick,text:txt,status:"На рассмотрении",time:Date.now()})}); alert('Жалоба отправлена!'); document.getElementById('zhalobaNick').value=""; document.getElementById('zhalobaText').value=""; loadZhalobi(); }
-async function loadZhalobi(){ let box=document.getElementById('zhalobaList'); let r=await fetch(DB+"/zhalobi.json"); let d=await r.json()||{}; let e=Object.entries(d); if(!e.length){ box.innerHTML="Пока нет жалоб"; return; } box.innerHTML=e.reverse().map(([id,z])=>`<div class="topic"><b>Жалоба от ${z.from} на ${z.on}</b><br>${z.text}<br><span style="font-size:12px;color:#aaa;">Статус: ${z.status}</span></div>`).join(''); }
-loadOnline(); loadTopics(); loadZayavki(); loadNews(); loadZhalobi();
+async function loadNews(){ let box=document.getElementById('newsList'); let r=await fetch(DB+"/news.json"); let d=await r.json()||{}; let e=Object.entries(d); if(!e.length){ box.innerHTML=""; return; } box.innerHTML=e.reverse().map(([id,n])=>`<div class="topic"><b>${n.title}</b><br><span style="font-size:12px;color:#aaa;">${n.text||""}</span></div>`).join(''); }
+async function sendZhaloba(){ let nick=document.getElementById('zhalobaNick').value.trim(); let txt=document.getElementById('zhalobaText').value.trim(); if(!nick||!txt) return alert('Заполни!'); await fetch(DB+"/zhalobi.json",{method:"POST",body:JSON.stringify({from:getMyNick()||"Гость",on:nick,text:txt,status:"На рассмотрении",time:Date.now()})}); alert('Жалоба отправлена!'); document.getElementById('zhalobaNick').value=""; document.getElementById('zhalobaText').value=""; loadZhalobi(); }
+async function loadZhalobi(){ let box=document.getElementById('zhalobaList'); let r=await fetch(DB+"/zhalobi.json"); let d=await r.json()||{}; let e=Object.entries(d); if(!e.length){ box.innerHTML="Пока нет жалоб"; return; } box.innerHTML=e.reverse().map(([id,z])=>`<div class="topic"><b>Жалоба от ${z.from} на ${z.on}</b><br>${z.text}<br>Статус: ${z.status}</div>`).join(''); }
+loadOnline(); loadZayavki(); loadPovishenie(); loadNews(); loadZhalobi();
 </script>
 </body>
   </html>
