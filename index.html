@@ -68,6 +68,9 @@ body{font-family:Arial;color:#fff;background:#0f1115}
 <button onclick="showPage('create',this)">Создать тему</button>
 <button onclick="showPage('profile',this)">Профиль</button>
 <button onclick="showPage('zayavki',this)">📝 Подать заявку</button>
+<button onclick="showPage('news',this)">📰 Новости</button>
+<button onclick="showPage('pravila',this)">📜 Правила</button>
+<button onclick="showPage('zhalobi',this)">⚠️ Жалобы</button>
 </div>
 <div style="color:#aaa;font-size:13px;">Главная / online / Форум</div>
 <div id="page-online"><div class="box"><h2>🟢 КТО В СЕТИ — KARATEL TEST <span style="float:right;font-size:12px;color:#aaa;font-weight:400;">В сети: <span id="onlineCount">1</span> / Настоящих всего: <span id="totalCount">2</span></span></h2><p style="font-size:13px;color:#aaa;margin:8px 0;">🟢 Зелёный — в сети<br>🔴 Красный — не в сети<br>Фейков нет! Только те, кто реально зашёл.</p><div style="display:flex;gap:8px;"><button onclick="showOnlyOnline()" class="btn-green" style="flex:1;">Показать только кто в сети</button><button onclick="loadOnline()" class="btn-blue" style="flex:1;">🔄 Обновить</button></div><div id="onlineList"></div></div></div>
@@ -88,8 +91,35 @@ body{font-family:Arial;color:#fff;background:#0f1115}
 <div class="box"><h2>⚙️ Мои настройки — KARATEL TEST</h2><div style="display:flex;gap:8px;align-items:center;background:#000;border:1px solid #333;border-radius:10px;padding:10px;margin:8px 0;"><label style="background:#fff;color:#000;padding:6px 10px;border-radius:4px;cursor:pointer;">Выберите файл<input type="file" accept="image/*" onchange="uploadAvatar(this)" style="display:none;"></label><span id="avatarFileName">Файл не выбран</span></div><div style="display:flex;gap:8px;align-items:center;background:#000;border:1px solid #333;border-radius:10px;padding:10px;margin:8px 0;"><label style="background:#fff;color:#000;padding:6px 10px;border-radius:4px;cursor:pointer;">Выберите файл<input type="file" accept="image/*" onchange="uploadBg(this)" style="display:none;"></label><span id="bgFileName">Файл не выбран</span></div><div style="display:flex;gap:8px;align-items:center;background:#000;border:1px solid #333;border-radius:10px;padding:10px;width:fit-content;"><input type="checkbox" id="blackCheck" onchange="toggleBlack(this.checked)"> Чёрный фон</div><input id="nickInput" placeholder="Твой ник"><button onclick="register()">Войти / Сменить ник</button></div>
 </div>
 <div id="page-zayavki" style="display:none;"><div class="box"><h2>📝 Подать заявку</h2><button onclick="openZayavkaForm('Администратор')">🛡️ На Администратора</button><button onclick="openZayavkaForm('Хелпер')">💚 На Хелпера</button><button onclick="openZayavkaForm('Модератор')">⚔️ На Модератора</button><button onclick="openZayavkaForm('Зам. Основателя')">👑 На Зам. Основателя</button><button onclick="openZayavkaForm('Лидер')">🏢 На Лидера</button></div><div class="box"><h2>📋 Заявки — видят все!</h2><div id="zayavkaList"></div></div></div>
-<div class="box"><h2>💬 Сообщения</h2><div class="chat-box" id="chatBox"></div><div style="display:flex;gap:8px;"><input id="chatInput" placeholder="Написать..." style="flex:1;"><button onclick="sendChat()" style="width:110px!important;">Отправить</button></div></div>
-<p style="font-size:12px;color:#888;text-align:center;">© 2026 KARATEL TEST — ФОРУМ</p>
+<div id="page-news" style="display:none;">
+<div class="box"><h2>📰 Новости KARATEL TEST</h2>
+<div class="topic"><b>🔥 Вышел новый лаунчер 16.23.0!</b><br><span style="font-size:12px;color:#aaa;">Новые машины, новые промокоды! Скачивай на сайте!</span></div>
+<div class="topic"><b>🎁 Промокод KARATEL - 100 000 ₽</b><br><span style="font-size:12px;color:#aaa;">Успей активировать в игре!</span></div>
+<div class="topic"><b>🚗 Новый гараж - BMW M5 F90!</b><br><span style="font-size:12px;color:#aaa;">Уже в игре!</span></div>
+<div class="box"><h3>✏️ Добавить новость (только админ)</h3><input id="newsTitle" placeholder="Заголовок новости"><textarea id="newsText" placeholder="Текст новости..." rows="2"></textarea><button onclick="addNews()">Опубликовать новость</button></div>
+<div id="newsList"></div>
+</div>
+</div>
+<div id="page-pravila" style="display:none;">
+<div class="box"><h2>📜 Правила KARATEL TEST</h2>
+<p style="margin:8px 0;">1. ❌ Не оскорблять игроков и администрацию</p>
+<p style="margin:8px 0;">2. ❌ Не читерить, не использовать софт</p>
+<p style="margin:8px 0;">3. ❌ Не спамить в чате и на форуме</p>
+<p style="margin:8px 0;">4. ❌ Не рекламировать другие проекты</p>
+<p style="margin:8px 0;">5. ✅ Слушаться администрацию</p>
+<p style="margin:8px 0;">6. ✅ Уважать всех игроков</p>
+<p style="margin:8px 0;color:#ff4444;font-weight:900;">За нарушение - МУТ / БАН!</p>
+</div>
+</div>
+<div id="page-zhalobi" style="display:none;">
+<div class="box"><h2>⚠️ Жалобы</h2>
+<input id="zhalobaNick" placeholder="На кого жалоба? Ник">
+<textarea id="zhalobaText" placeholder="Что случилось? Опиши подробно..." rows="3"></textarea>
+<button onclick="sendZhaloba()">Отправить жалобу</button>
+</div>
+<div class="box"><h2>📋 Все жалобы — видят все!</h2><div id="zhalobaList"></div></div>
+</div>
+<p style="font-size:12px;color:#888;text-align:center;margin-top:12px;">© 2026 KARATEL TEST — ФОРУМ</p>
 </div>
 <div class="modal" id="modalRank"><div class="modal-inner"><h2>Дать ранг — <span id="rankTarget"></span></h2><select id="rankSelect"><option>Игрок</option><option>Хелпер</option><option>Модератор</option><option>Администратор</option><option>Главный Администратор</option><option>Зам. Основателя</option><option>Разработчик</option></select><button onclick="doGiveRank()">Дать ранг</button><button onclick="closeModal()" style="background:#333;">Закрыть</button></div></div>
 <div class="modal" id="modalZayavka"><div class="modal-inner"><h2 id="zayavkaTitle">📝 Подать заявку</h2><input id="zNick" placeholder="Твой ник"><input id="zAge" placeholder="Твой возраст"><textarea id="zWhy" placeholder="Почему именно ты?" rows="3"></textarea><button onclick="sendZayavka()">Отправить заявку</button><button onclick="closeModal()" style="background:#333;">Закрыть</button></div></div>
@@ -108,7 +138,7 @@ function updateProfileUI(){ let nick=getMyNick()||"Wells_ohhotnik"; let rank=get
 function uploadAvatar(input){ let f=input.files[0]; if(!f) return; document.getElementById('avatarFileName').innerText=f.name; let r=new FileReader(); r.onload=function(e){ let nick=getMyNick(); localStorage.setItem('avatar_'+nick,e.target.result); fetch(DB+"/avatars.json",{method:"POST",body:JSON.stringify({nick:nick,avatar:e.target.result,time:Date.now()})}); updateProfileUI(); loadOnline(); }; r.readAsDataURL(f); }
 function uploadBg(input){ let f=input.files[0]; if(!f) return; document.getElementById('bgFileName').innerText=f.name; let r=new FileReader(); r.onload=function(e){ localStorage.setItem('bg_'+getMyNick(),e.target.result); updateProfileUI(); }; r.readAsDataURL(f); }
 function logout(){ localStorage.setItem('karatel_nick','Гость'); localStorage.setItem('karatel_rank','Игрок'); updateProfileUI(); }
-function showPage(p,el){ document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); if(el)el.classList.add('active'); ['online','admin','create','profile','zayavki'].forEach(x=>{ document.getElementById('page-'+x).style.display=(x===p?'block':'none'); }); if(p==='online') loadOnline(); if(p==='admin') loadAdmin(); if(p==='create') loadTopics(); if(p==='zayavki') loadZayavki(); if(p==='profile') updateProfileUI(); }
+function showPage(p,el){ document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); if(el)el.classList.add('active'); ['online','admin','create','profile','zayavki','news','pravila','zhalobi'].forEach(x=>{ document.getElementById('page-'+x).style.display=(x===p?'block':'none'); }); if(p==='online') loadOnline(); if(p==='admin') loadAdmin(); if(p==='create') loadTopics(); if(p==='zayavki') loadZayavki(); if(p==='news') loadNews(); if(p==='zhalobi') loadZhalobi(); if(p==='profile') updateProfileUI(); }
 function closeModal(){ document.getElementById('modalZayavka').style.display='none'; document.getElementById('modalTopic').style.display='none'; document.getElementById('modalRank').style.display='none'; }
 function register(){ let nick=document.getElementById('nickInput').value.trim(); if(!nick) return alert('Введи ник!'); localStorage.setItem('karatel_nick',nick); let low=nick.toLowerCase(); if(low.includes('wells')||low.includes('ohhotnik')||low.includes('aks')||low.includes('акс')) localStorage.setItem('karatel_rank','Разработчик'); else if(low.includes('eva')||low.includes('marlowa')) localStorage.setItem('karatel_rank','Разработчик'); else if(!localStorage.getItem('karatel_rank')) localStorage.setItem('karatel_rank','Игрок'); fetch(DB+"/online.json",{method:"POST",body:JSON.stringify({nick:nick,rank:getMyRank(),time:Date.now()})}); alert('Привет, '+nick); updateProfileUI(); loadOnline(); }
 updateProfileUI();
@@ -125,17 +155,17 @@ let currentTopicId=null;
 async function openTopic(id){ currentTopicId=id; let r=await fetch(DB+"/topics/"+id+".json"); let t=await r.json(); document.getElementById('topicModalTitle').innerText=t.title+(t.closed?" 🔒 ЗАКРЫТА":""); document.getElementById('topicModalBody').innerHTML=`<p>${t.text||""}</p><p style="font-size:12px;color:#aaa;">Автор: ${t.author}</p>`; if(t.closed){ document.getElementById('topicReplyBox').style.display='none'; document.getElementById('topicClosedMsg').style.display='block'; } else { document.getElementById('topicReplyBox').style.display='block'; document.getElementById('topicClosedMsg').style.display='none'; } if(isAdmin()){ document.getElementById('topicAdminBtns').innerHTML=t.closed?`<button onclick="toggleTopic('${id}',false)">🔓 Открыть тему</button>`:`<button onclick="toggleTopic('${id}',true)" style="background:#ff0000;">🔒 Закрыть тему</button>`; } else document.getElementById('topicAdminBtns').innerHTML=""; document.getElementById('modalTopic').style.display='block'; }
 async function toggleTopic(id,close){ if(!isAdmin()) return alert('Только администрация!'); await fetch(DB+"/topics/"+id+".json",{method:"PATCH",body:JSON.stringify({closed:close})}); alert(close?"Тема закрыта!":"Тема открыта!"); closeModal(); loadTopics(); }
 async function sendTopicReply(){ let inp=document.getElementById('topicReplyInput'); let txt=inp.value.trim(); if(!txt) return; let r=await fetch(DB+"/topics/"+currentTopicId+".json"); let t=await r.json(); if(t.closed) return alert('Тема закрыта!'); alert('Отправлено: '+txt); inp.value=""; }
-async function loadChat(){ try{ let r=await fetch(DB+"/chat.json"); let d=await r.json()||{}; let arr=Object.values(d).slice(-30); let box=document.getElementById('chatBox'); box.innerHTML=arr.length?arr.map(m=>{ let av=localStorage.getItem('avatar_'+m.name); let avHtml=av?`<span class="avatar-small"><img src="${av}"></span>`:`<span class="avatar-small">${m.name[0].toUpperCase()}</span>`; return `<div class="chat-msg">${avHtml}<div><b>${m.name}:</b> ${m.text}</div></div>`; }).join(''):"Пока нет сообщений"; box.scrollTop=box.scrollHeight; }catch(e){} }
-async function sendChat(){ let inp=document.getElementById('chatInput'); let txt=inp.value.trim(); if(!txt) return; let nick=getMyNick()||"Гость"; if(nick==="Гость") return alert('Сначала регистрация!'); await fetch(DB+"/chat.json",{method:"POST",body:JSON.stringify({name:nick,text:txt,time:Date.now()})}); inp.value=""; loadChat(); }
-document.getElementById('chatInput').addEventListener('keydown',e=>{ if(e.key==='Enter') sendChat(); });
-loadChat(); setInterval(loadChat,3000);
 let currentZayavka="Администратор";
 function openZayavkaForm(type){ currentZayavka=type; document.getElementById('zayavkaTitle').innerText="📝 Подать заявку — "+type; document.getElementById('zNick').value=getMyNick(); document.getElementById('modalZayavka').style.display='block'; }
 async function sendZayavka(){ let nick=document.getElementById('zNick').value.trim(); let age=document.getElementById('zAge').value.trim(); let why=document.getElementById('zWhy').value.trim(); if(!nick||!why) return alert('Заполни!'); await fetch(DB+"/zayavki.json",{method:"POST",body:JSON.stringify({nick:nick,age:age,why:why,type:currentZayavka,status:"На рассмотрении",closed:false,time:Date.now()})}); alert('Заявка отправлена!'); closeModal(); loadZayavki(); }
 async function loadZayavki(){ let box=document.getElementById('zayavkaList'); let r=await fetch(DB+"/zayavki.json"); let data=await r.json()||{}; let entries=Object.entries(data); if(!entries.length){ box.innerHTML="Пока нет заявок"; return; } box.innerHTML=entries.reverse().map(([id,z])=>{ let btns=isAdmin()?`<br><button class="small-btn" onclick="answerZayavka('${id}','${z.nick}','${z.type}','Одобрено')">✅ Одобрить</button><button class="small-btn" style="background:#ff0000!important;" onclick="answerZayavka('${id}','${z.nick}','${z.type}','Отклонено')">❌ Отклонить</button><button class="small-btn" style="background:#333!important;" onclick="closeZayavka('${id}')">🔒 Закрыть</button>`:""; return `<div class="topic ${z.closed?'closed':''}"><b>${z.nick}</b> — хочет: ${z.type}<br>Возраст: ${z.age}<br>Причина: ${z.why}<br>Статус: <b>${z.status}</b>${btns}</div>`; }).join(''); }
 async function answerZayavka(id,nick,type,status){ if(!isAdmin()) return alert('Только администрация!'); await fetch(DB+"/zayavki/"+id+".json",{method:"PATCH",body:JSON.stringify({status:status})}); loadZayavki(); }
 async function closeZayavka(id){ if(!isAdmin()) return alert('Только администрация!'); await fetch(DB+"/zayavki/"+id+".json",{method:"PATCH",body:JSON.stringify({closed:true,status:"Закрыта"})}); loadZayavki(); }
-loadOnline(); loadTopics(); loadZayavki();
+async function addNews(){ if(!isAdmin()) return alert('Только администрация!'); let t=document.getElementById('newsTitle').value.trim(); let txt=document.getElementById('newsText').value.trim(); if(!t) return alert('Введи заголовок!'); await fetch(DB+"/news.json",{method:"POST",body:JSON.stringify({title:t,text:txt,author:getMyNick(),time:Date.now()})}); document.getElementById('newsTitle').value=""; document.getElementById('newsText').value=""; loadNews(); }
+async function loadNews(){ let box=document.getElementById('newsList'); let r=await fetch(DB+"/news.json"); let d=await r.json()||{}; let e=Object.entries(d); if(!e.length){ box.innerHTML=""; return; } box.innerHTML=e.reverse().map(([id,n])=>`<div class="topic"><b>${n.title}</b><br><span style="font-size:12px;color:#aaa;">${n.text||""} | Автор: ${n.author}</span></div>`).join(''); }
+async function sendZhaloba(){ let nick=document.getElementById('zhalobaNick').value.trim(); let txt=document.getElementById('zhalobaText').value.trim(); if(!nick||!txt) return alert('Заполни всё!'); await fetch(DB+"/zhalobi.json",{method:"POST",body:JSON.stringify({from:getMyNick()||"Гость",on:nick,text:txt,status:"На рассмотрении",time:Date.now()})}); alert('Жалоба отправлена!'); document.getElementById('zhalobaNick').value=""; document.getElementById('zhalobaText').value=""; loadZhalobi(); }
+async function loadZhalobi(){ let box=document.getElementById('zhalobaList'); let r=await fetch(DB+"/zhalobi.json"); let d=await r.json()||{}; let e=Object.entries(d); if(!e.length){ box.innerHTML="Пока нет жалоб"; return; } box.innerHTML=e.reverse().map(([id,z])=>`<div class="topic"><b>Жалоба от ${z.from} на ${z.on}</b><br>${z.text}<br><span style="font-size:12px;color:#aaa;">Статус: ${z.status}</span></div>`).join(''); }
+loadOnline(); loadTopics(); loadZayavki(); loadNews(); loadZhalobi();
 </script>
 </body>
-                                                                                                                                                                                                                                                                                                                                                                                                                                     </html>
+  </html>
