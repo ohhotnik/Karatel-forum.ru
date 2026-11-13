@@ -3,353 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KARATEL TEST</title>
+<title>KARATEL TEST - Форум</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;color:#fff;background:#0f1115}
-.bg{position:fixed;inset:0;background:url('IMG-20261113-WA0545.jpg') center/cover no-repeat;z-index:0}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:1}
-.wrap{position:relative;z-index:2;max-width:600px;margin:0 auto;padding:12px;text-align:center}
-.logo{font-size:32px;font-weight:900;padding:12px 0}
-.logo span{background:#ff0000;padding:4px 12px;border-radius:8px;font-size:20px;margin-left:8px}
-.top-red{background:#ff0000;padding:10px;border-radius:8px;text-align:left;font-weight:900;margin-bottom:10px}
-.search{width:100%;padding:12px;border-radius:25px;border:none;background:#222;color:#aaa;margin-bottom:12px}
-.nav{display:flex;gap:16px;overflow-x:auto;white-space:nowrap;padding:10px 0;border-bottom:2px solid #333;margin-bottom:12px}
-.nav button{background:none;border:none;color:#fff;font-weight:700;font-size:15px;cursor:pointer;padding:6px}
-.nav button.active{color:#fff;border-bottom:3px solid #ff0000}
-.btn{display:block;width:100%;padding:16px;background:#ff7a00;color:#fff;text-decoration:none;font-weight:900;border-radius:12px;font-size:17px;margin:10px 0;border:none;cursor:pointer}
-.btn-white{background:#fff;color:#000}
-.btn-dark{background:#161920;color:#fff;border:2px solid #ff7a00}
-.btn-yellow{background:#ffcc00;color:#000}
-.btn-red{background:#ff0000;color:#fff}
-.btn-green{background:#00c853;color:#fff}
-.status{background:rgba(22,25,32,0.95);border-radius:16px;padding:16px;margin:12px 0;text-align:left}
-.box{background:rgba(22,25,32,0.97);border-radius:16px;padding:16px;margin:12px 0;text-align:left}
+body{font-family:Arial;color:#fff;background:#0f1115}
+.wrap{max-width:600px;margin:0 auto;padding:12px}
+.logo{font-size:32px;font-weight:900;text-align:center;padding:12px}
+.logo span{background:#ff0000;padding:4px 12px;border-radius:8px}
+.nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;padding:10px 0;border-bottom:2px solid #333}
+.nav button{background:#222;border:none;color:#fff;font-weight:700;padding:8px 12px;border-radius:20px;cursor:pointer}
+.nav button.active{background:#ff0000}
+.box{background:#161920;border-radius:16px;padding:16px;margin:12px 0}
 .box input,.box textarea,.box select{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#000;color:#fff;margin:8px 0}
 .box button{width:100%;padding:12px;background:#ff7a00;color:#fff;border:none;border-radius:10px;font-weight:900;cursor:pointer;margin:4px 0}
-.tab{display:inline-block;padding:9px 14px;border-radius:20px;background:#252a34;color:#fff;border:none;font-weight:700;margin:3px;cursor:pointer}
-.tab.active{background:#ff7a00}
-.item{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid #333;font-size:14px;gap:8px}
-.rank{padding:4px 10px;border-radius:6px;font-size:12px;font-weight:900;border:2px solid #ff0000;color:#ff0000;background:transparent}
-.rank-dev{border-color:#ff0000;color:#ff2222}
-.rank-founder{border-color:#ff0000;color:#ff0000;background:#300}
-.rank-zam{border-color:#a100ff;color:#c66bff}
+.user-card{background:#1a1d24;border-radius:14px;padding:14px;margin:10px 0}
+.rank{padding:4px 10px;border-radius:6px;font-size:12px;font-weight:900;border:2px solid #ff0000;color:#ff2222}
 .rank-admin{border-color:#00aaff;color:#00aaff}
 .rank-helper{border-color:#2ecc71;color:#2ecc71}
-.rank-player{border-color:#555;color:#aaa}
-/* КТО В СЕТИ КАК НА СКРИНЕ */
-.user-card{background:#1a1d24;border-radius:14px;padding:14px;margin:10px 0;display:flex;gap:12px;align-items:center;text-align:left}
-.avatar{width:55px;height:55px;border-radius:50%;background:#ff0000;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;flex-shrink:0}
-.online-dot{color:#2ecc71;font-weight:900}
-.offline-dot{color:#ff0000;font-weight:900}
-/* ТЕМЫ / ЗАЯВКИ */
-.topic{background:#000;border-radius:12px;padding:12px;margin:10px 0;border-left:4px solid #ff7a00;text-align:left}
-.topic.closed{border-left-color:#ff0000;opacity:0.85}
-.topic.closed .closed-label{color:#ff4444;font-weight:900}
-.chat-box{height:180px;overflow-y:auto;background:#000;border-radius:12px;padding:10px;text-align:left;margin:10px 0}
-.chat-msg{margin-bottom:8px;font-size:14px;word-break:break-word}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:99;overflow-y:auto;padding:16px}
-.modal-inner{max-width:520px;margin:10px auto;background:#161920;border-radius:16px;padding:18px;text-align:left;border:2px solid #ff0000}
+.topic{background:#000;border-radius:12px;padding:12px;margin:10px 0;border-left:4px solid #ff7a00}
+.topic.closed{border-left-color:#ff0000}
+.chat-box{height:180px;overflow-y:auto;background:#000;border-radius:12px;padding:10px;margin:10px 0}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:99;padding:16px;overflow-y:auto}
+.modal-inner{max-width:520px;margin:10px auto;background:#161920;border-radius:16px;padding:18px;border:2px solid #ff0000}
 .small-btn{padding:7px 10px!important;width:auto!important;font-size:12px!important;display:inline-block!important;margin:2px!important}
 </style>
 </head>
 <body>
-<div class="bg"></div><div class="overlay"></div>
 <div class="wrap">
 <div class="logo">KARATEL <span>TEST</span></div>
-<div class="top-red">KARATEL TEST</div>
-<input class="search" placeholder="🔍 Поиск по форуму KARATEL TEST...">
 
-<!-- НАВИГАЦИЯ КАК В БЛЕК РАША -->
 <div class="nav">
+<button onclick="showPage('online',this)" class="active">🟢 Кто в сети</button>
 <button onclick="showPage('admin',this)">Администрация</button>
-<button class="active" onclick="showPage('online',this)">🟢 Кто в сети</button>
 <button onclick="showPage('create',this)">Создать тему</button>
 <button onclick="showPage('profile',this)">Профиль</button>
 <button onclick="showPage('zayavki',this)">📝 Подать заявку</button>
 </div>
 
-<div style="text-align:left;color:#aaa;font-size:13px;">Главная / online / Форум</div>
+<div id="page-online"><div class="box"><h2>🟢 КТО В СЕТИ</h2><div id="onlineList"></div></div></div>
+<div id="page-admin" style="display:none;"><div class="box"><h2>👑 Администрация</h2><div id="adminList"></div></div></div>
+<div id="page-create" style="display:none;"><div class="box"><h2>✏️ Создать тему</h2><input id="topicTitle" placeholder="Название темы"><textarea id="topicText" placeholder="Текст темы..." rows="3"></textarea><button onclick="createTopic()">Создать тему</button></div><div class="box"><h2>📋 Все темы</h2><div id="allTopics"></div></div></div>
+<div id="page-profile" style="display:none;"><div class="box"><h2>👤 Профиль</h2><input id="nickInput" placeholder="Твой ник"><button onclick="register()">Войти</button><p id="myRankText"></p><div id="myProfileCard"></div></div></div>
+<div id="page-zayavki" style="display:none;"><div class="box"><h2>📝 Подать заявку</h2><button onclick="openZayavkaForm('Администратор')">На Администратора</button><button onclick="openZayavkaForm('Хелпер')">На Хелпера</button><button onclick="openZayavkaForm('Модератор')">На Модератора</button><button onclick="openZayavkaForm('Зам. Основателя')">На Зам. Основателя</button><button onclick="openZayavkaForm('Лидер')">На Лидера</button></div><div class="box"><h2>📋 Заявки</h2><div id="zayavkaList"></div></div></div>
 
-<!-- КТО В СЕТИ -->
-<div id="page-online">
-<div class="box">
-<h2>🟢 КТО В СЕТИ — KARATEL TEST <span style="float:right;font-size:13px;color:#aaa;font-weight:400;">В сети: <span id="onlineCount">2</span> / Настоящих всего: <span id="totalCount">2</span></span></h2>
-<p style="font-size:13px;color:#aaa;margin:10px 0;">🟢 Зелёный — в сети, настоящий человек сейчас на сайте<br>🔴 Красный — не в сети, вышел с сайта<br>Фейков нет! Только те, кто реально зашёл.</p>
-<button class="btn btn-red" onclick="loadOnline()" style="width:auto;display:inline-block;">Показать всех</button>
-<button onclick="loadOnline()" style="width:auto;display:inline-block;background:#222!important;">🔄 Обновить</button>
-<div id="onlineList"></div>
+<div class="box"><h2>💬 Сообщения</h2><div class="chat-box" id="chatBox"></div><div style="display:flex;gap:8px;"><input id="chatInput" placeholder="Написать..." style="flex:1;"><button onclick="sendChat()" style="width:110px!important;">Отправить</button></div></div>
+<p style="font-size:12px;color:#888;text-align:center;">© 2026 KARATEL TEST — ФОРУМ</p>
 </div>
 
-<a class="btn" href="https://github.com/ohhotnik/Karatel-com.ru/releases/download/v16.23.0/KARATEL.TEST_16.23.0.apk">⬇ СКАЧАТЬ ЛАУНЧЕР (APK)</a>
-<a class="btn btn-white" href="https://t.me/karatel_test">📢 НАШ TELEGRAM</a>
-<button class="btn btn-yellow" onclick="alert('Промокод: KARATEL - 100 000 ₽')">🎁 ПРОМОКОДЫ — НАЖМИ</button>
-</div>
-
-<!-- АДМИНИСТРАЦИЯ -->
-<div id="page-admin" style="display:none;">
-<div class="box"><h2>👑 Администрация</h2><div id="adminList"></div></div>
-</div>
-
-<!-- СОЗДАТЬ ТЕМУ -->
-<div id="page-create" style="display:none;">
-<div class="box">
-<h2>✏️ Создать тему</h2>
-<input id="topicTitle" placeholder="Название темы">
-<textarea id="topicText" placeholder="Текст темы..." rows="3"></textarea>
-<select id="topicCat"><option>Общее</option><option>Жалобы</option><option>Предложения</option><option>Заявки</option></select>
-<button onclick="createTopic()">Создать тему</button>
-<p style="font-size:12px;color:#888;">Если админ закроет тему — никто не сможет писать! Открыть может только администрация!</p>
-</div>
-<div class="box"><h2>📋 Все темы</h2><div id="allTopics">Загрузка...</div></div>
-</div>
-
-<!-- ПРОФИЛЬ -->
-<div id="page-profile" style="display:none;">
-<div class="box">
-<h2>👤 Профиль / Регистрация</h2>
-<input id="nickInput" placeholder="Твой ник в игре, например Wells_ohhotnik">
-<input id="passInput" type="password" placeholder="Пароль">
-<button onclick="register()">Зарегистрироваться / Войти</button>
-<p id="myRankText" style="margin-top:10px;"></p>
-<div id="myProfileCard"></div>
-</div>
-<div class="box"><h2>🚗 Гараж</h2><div class="item"><span>🚗 BMW M5 F90</span><b style="color:#2ecc71;">В гараже</b></div><div class="item"><span>🚗 Lada Priora</span><b style="color:#2ecc71;">В гараже</b></div></div>
-<div class="box"><h2>🏢 Бизнес</h2><div class="item"><span>🏢 Автосалон</span><b style="color:#ffcc00;">Владелец</b></div></div>
-<div class="box"><h2>🎁 Промокоды</h2><p><b style="color:#ffcc00;">KARATEL</b> — 100 000 ₽</p><p><b style="color:#ffcc00;">BONUS500</b> — 50 000 ₽</p><p><b style="color:#ffcc00;">GOLD777</b> — 777 коинов</p></div>
-</div>
-
-<!-- ПОДАТЬ ЗАЯВКУ КАК В БЛЕК РАША -->
-<div id="page-zayavki" style="display:none;">
-<div class="box">
-<h2>📝 Подать заявку</h2>
-<p style="font-size:13px;color:#aaa;">Как в Блек Раша! Нажми на заявку — откроется отдельная форма! Каждая заявка отдельно!</p>
-<button onclick="openZayavkaForm('Администратор')">🛡️ Подать заявку — Администратор</button>
-<button onclick="openZayavkaForm('Хелпер')">💚 Подать заявку — Хелпер</button>
-<button onclick="openZayavkaForm('Модератор')">⚔️ Подать заявку — Модератор</button>
-<button onclick="openZayavkaForm('Зам. Основателя')">👑 Подать заявку — Зам. Основателя</button>
-<button onclick="openZayavkaForm('Лидер')">🏢 Подать заявку — Лидер</button>
-</div>
-<div class="box"><h2>📋 Заявки — видят все!</h2><p style="font-size:12px;color:#aaa;">Одобрять может только Администрация!</p><div id="zayavkaList">Загрузка...</div></div>
-</div>
-
-<!-- СООБЩЕНИЯ -->
-<div class="box"><h2>💬 Сообщения</h2><div class="chat-box" id="chatBox">Загрузка...</div><div style="display:flex;gap:8px;"><input id="chatInput" placeholder="Написать..." style="flex:1;"><button onclick="sendChat()" style="width:110px!important;">Отправить</button></div></div>
-
-<p style="font-size:12px;color:#888;">© 2026 KARATEL TEST</p>
-</div>
-
-<!-- МОДАЛКА ПОДАТЬ ЗАЯВКУ - ОТДЕЛЬНАЯ -->
-<div class="modal" id="modalZayavka">
-<div class="modal-inner">
-<h2 id="zayavkaTitle">📝 Подать заявку</h2>
-<p style="font-size:13px;color:#aaa;">Заявка отдельная! Только на этот ранг!</p>
-<input id="zNick" placeholder="Твой ник">
-<input id="zAge" placeholder="Твой возраст">
-<textarea id="zWhy" placeholder="Почему именно ты?" rows="3"></textarea>
-<button onclick="sendZayavka()">Отправить заявку</button>
-<button onclick="closeModal()" style="background:#333;">Закрыть</button>
-</div>
-</div>
-
-<!-- МОДАЛКА ТЕМА -->
-<div class="modal" id="modalTopic">
-<div class="modal-inner">
-<h2 id="topicModalTitle"></h2>
-<div id="topicModalBody"></div>
-<div id="topicModalChat" class="chat-box"></div>
-<div id="topicReplyBox"><input id="topicReplyInput" placeholder="Написать в тему..."><button onclick="sendTopicReply()">Отправить</button></div>
-<p id="topicClosedMsg" style="display:none;color:#ff4444;font-weight:900;">🔒 Тема закрыта администрацией! Никто не может писать! Открыть может только администрация!</p>
-<div id="topicAdminBtns"></div>
-<button onclick="closeModal()" style="background:#333;margin-top:10px;">Закрыть</button>
-</div>
-</div>
+<div class="modal" id="modalZayavka"><div class="modal-inner"><h2 id="zayavkaTitle">Подать заявку</h2><input id="zNick" placeholder="Твой ник"><input id="zAge" placeholder="Твой возраст"><textarea id="zWhy" placeholder="Почему именно ты?" rows="3"></textarea><button onclick="sendZayavka()">Отправить</button><button onclick="closeModal()" style="background:#333;">Закрыть</button></div></div>
+<div class="modal" id="modalTopic"><div class="modal-inner"><h2 id="topicModalTitle"></h2><div id="topicModalBody"></div><div id="topicReplyBox"><input id="topicReplyInput" placeholder="Написать в тему..."><button onclick="sendTopicReply()">Отправить</button></div><p id="topicClosedMsg" style="display:none;color:#ff4444;font-weight:900;">🔒 Тема закрыта!</p><div id="topicAdminBtns"></div><button onclick="closeModal()" style="background:#333;margin-top:10px;">Закрыть</button></div></div>
 
 <script>
 const DB="https://karatel-test-1806a-default-rtdb.firebaseio.com";
-const RANKS={"Основатель":100,"Разработчик":100,"Зам. Основателя":90,"Администратор":80,"Админ":70,"Модератор":60,"Хелпер":50,"Лидер":40,"Игрок":10};
-function rankClass(r){ if(r==="Разработчик")return "rank-dev"; if(r==="Основатель")return "rank-founder"; if(r==="Зам. Основателя")return "rank-zam"; if(r==="Администратор"||r==="Админ")return "rank-admin"; if(r==="Хелпер"||r==="Модератор")return "rank-helper"; return "rank-player"; }
+function rankClass(r){ if(r==="Разработчик"||r==="Основатель")return "rank"; if(r==="Зам. Основателя")return "rank"; if(r==="Администратор")return "rank rank-admin"; if(r==="Хелпер"||r==="Модератор")return "rank rank-helper"; return "rank"; }
 function getMyRank(){ return localStorage.getItem('karatel_rank')||"Игрок"; }
 function getMyNick(){ return localStorage.getItem('karatel_nick')||""; }
-function isAdmin(){ let r=getMyRank(); return ["Основатель","Разработчик","Зам. Основателя","Администратор","Админ"].includes(r); }
-// ТЫ И ЕВА - РАЗРАБОТЧИКИ КАК НА СКРИНЕ!
+function isAdmin(){ return ["Основатель","Разработчик","Зам. Основателя","Администратор"].includes(getMyRank()); }
 if(!localStorage.getItem('karatel_nick')){ localStorage.setItem('karatel_nick','Wells_ohhotnik'); localStorage.setItem('karatel_rank','Разработчик'); }
-
-function showPage(p,el){
-  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); if(el)el.classList.add('active');
-  ['online','admin','create','profile','zayavki'].forEach(x=>{ document.getElementById('page-'+x).style.display=(x===p?'block':'none'); });
-  if(p==='online') loadOnline(); if(p==='admin') loadAdmin(); if(p==='create') loadTopics(); if(p==='zayavki') loadZayavki();
-}
+function showPage(p,el){ document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); if(el)el.classList.add('active'); ['online','admin','create','profile','zayavki'].forEach(x=>{ document.getElementById('page-'+x).style.display=(x===p?'block':'none'); }); if(p==='online') loadOnline(); if(p==='admin') loadAdmin(); if(p==='create') loadTopics(); if(p==='zayavki') loadZayavki(); }
 function closeModal(){ document.getElementById('modalZayavka').style.display='none'; document.getElementById('modalTopic').style.display='none'; }
-
-// РЕГИСТРАЦИЯ - ПОКАЗЫВАЕТ ТЕГ КАК НА СКРИНЕ
-function register(){
-  let nick=document.getElementById('nickInput').value.trim();
-  let pass=document.getElementById('passInput').value.trim();
-  if(!nick) return alert('Введи ник!');
-  localStorage.setItem('karatel_nick',nick);
-  // Акс и Ева всегда Разработчики!
-  let low=nick.toLowerCase();
-  if(low.includes('wells')||low.includes('ohhotnik')||low.includes('акс')||low.includes('aks')) localStorage.setItem('karatel_rank','Разработчик');
-  else if(low.includes('eva')||low.includes('marlowa')) localStorage.setItem('karatel_rank','Разработчик');
-  else if(!localStorage.getItem('karatel_rank')||localStorage.getItem('karatel_rank')==="Игрок") localStorage.setItem('karatel_rank','Игрок');
-  // Сохранить в онлайн
-  fetch(DB+"/online.json",{method:"POST",body:JSON.stringify({nick:nick,rank:getMyRank(),time:Date.now(),online:true})});
-  alert('Привет, '+nick+'! Твой тег: '+getMyRank());
-  updateProfile(); loadOnline();
-}
-function updateProfile(){
-  let nick=getMyNick()||"Гость"; let rank=getMyRank();
-  document.getElementById('myRankText').innerHTML="Твой ник: <b>"+nick+"</b><br>Твой тег: <span class='rank "+rankClass(rank)+"'>"+rank.toUpperCase()+"</span>";
-  document.getElementById('myProfileCard').innerHTML=`<div class="user-card"><div class="avatar">${nick[0]||"?"}</div><div><b>${nick} <span style="color:#aaa;font-weight:400;">настоящий</span></b><br><span class="online-dot">● В сети</span><br><span class="rank ${rankClass(rank)}">${rank.toUpperCase()}</span></div></div>`;
-  document.getElementById('nickInput').value=nick;
-}
+function register(){ let nick=document.getElementById('nickInput').value.trim(); if(!nick) return alert('Введи ник!'); localStorage.setItem('karatel_nick',nick); let low=nick.toLowerCase(); if(low.includes('wells')||low.includes('ohhotnik')||low.includes('aks')||low.includes('акс')) localStorage.setItem('karatel_rank','Разработчик'); else if(low.includes('eva')||low.includes('marlowa')) localStorage.setItem('karatel_rank','Разработчик'); else if(!localStorage.getItem('karatel_rank')) localStorage.setItem('karatel_rank','Игрок'); alert('Привет, '+nick); updateProfile(); loadOnline(); }
+function updateProfile(){ let nick=getMyNick()||"Гость"; let rank=getMyRank(); document.getElementById('myRankText').innerHTML="Ник: <b>"+nick+"</b> | Тег: <span class='"+rankClass(rank)+"'>"+rank+"</span>"; document.getElementById('myProfileCard').innerHTML=`<div class="user-card"><b>${nick}</b><br><span style="color:#2ecc71;">● В сети</span><br><span class="${rankClass(rank)}">${rank}</span></div>`; document.getElementById('nickInput').value=nick; }
 updateProfile();
-
-// КТО В СЕТИ КАК НА СКРИНЕ
-async function loadOnline(){
-  let list=document.getElementById('onlineList');
-  // Всегда показываем Еву и Акса как на скрине + реальные
-  let base=[
-    {nick:"Eva_Marlowa",rank:"Разработчик",online:true},
-    {nick:"Wells_ohhotnik",rank:"Разработчик",online:true},
-  ];
-  try{ let r=await fetch(DB+"/online.json"); let d=await r.json()||{}; let arr=Object.values(d).slice(-20); arr.forEach(u=>{ if(!base.find(b=>b.nick===u.nick)) base.push(u); }); }catch(e){}
-  // Если ты новый - ты Игрок
-  let me=getMyNick(); if(me && !base.find(b=>b.nick===me)) base.push({nick:me,rank:getMyRank(),online:true});
-  document.getElementById('onlineCount').innerText=base.length;
-  document.getElementById('totalCount').innerText=base.length;
-  list.innerHTML=base.map(u=>{
-    let isMe=u.nick===me;
-    let showRankBtn=isAdmin() && !isMe ? `<button class="small-btn" style="background:#222!important;border:1px solid #555;" onclick="giveRankPrompt('${u.nick}')">Дать ранг</button>` : "";
-    return `<div class="user-card"><div class="avatar">${u.nick[0]}</div><div style="flex:1;"><b>${u.nick} <span style="color:#aaa;font-weight:400;font-size:12px;">настоящий</span></b><br><span class="online-dot">● В сети</span><br><span class="rank ${rankClass(u.rank)}">${(u.rank||"Игрок").toUpperCase()}</span></div><div>${showRankBtn}</div></div>`;
-  }).join('');
-}
-function giveRankPrompt(nick){
-  let r=prompt("Какой ранг дать "+nick+"? Напиши: Зам. Основателя / Админ / Хелпер / Игрок");
-  if(!r) return; if(nick.toLowerCase().includes('wells')||nick.toLowerCase().includes('eva')) return alert('Их понизить нельзя! Они Разработчики!');
-  alert(nick+" теперь: "+r);
-  fetch(DB+"/ranks.json",{method:"POST",body:JSON.stringify({nick:nick,rank:r,time:Date.now()})});
-  loadOnline();
-}
-async function loadAdmin(){
-  let box=document.getElementById('adminList');
-  box.innerHTML=`<div class="user-card"><div class="avatar">W</div><div><b>Wells_ohhotnik</b><br><span class="rank rank-dev">РАЗРАБОТЧИК</span></div></div><div class="user-card"><div class="avatar">E</div><div><b>Eva_Marlowa</b><br><span class="rank rank-dev">РАЗРАБОТЧИК</span></div></div><p style="font-size:12px;color:#888;">Администрация может закрывать темы и одобрять заявки!</p>`;
-}
-
-// ТЕМЫ + ЗАКРЫТИЕ
-async function createTopic(){
-  let title=document.getElementById('topicTitle').value.trim();
-  let text=document.getElementById('topicText').value.trim();
-  let cat=document.getElementById('topicCat').value;
-  if(!title) return alert('Введи название темы!');
-  let nick=getMyNick()||"Гость";
-  await fetch(DB+"/topics.json",{method:"POST",body:JSON.stringify({title:title,text:text,cat:cat,author:nick,rank:getMyRank(),closed:false,time:Date.now()})});
-  alert('Тема создана!');
-  document.getElementById('topicTitle').value=""; document.getElementById('topicText').value="";
-  loadTopics();
-}
-async function loadTopics(){
-  let box=document.getElementById('allTopics'); if(!box) return;
-  let r=await fetch(DB+"/topics.json"); let data=await r.json()||{};
-  let entries=Object.entries(data);
-  if(entries.length===0){ box.innerHTML="Пока нет тем. Создай первую!"; return; }
-  box.innerHTML=entries.reverse().map(([id,t])=>`<div class="topic ${t.closed?'closed':''}" onclick="openTopic('${id}')"><b>${t.title}</b> ${t.closed?'<span class="closed-label">🔒 ЗАКРЫТА</span>':'<span style="color:#2ecc71;">● Открыта</span>'}<br><span style="font-size:12px;color:#aaa;">Автор: ${t.author} | ${t.cat} | ${t.text||""}</span><br><span style="font-size:12px;color:#ffcc00;">Нажми чтобы открыть</span></div>`).join('');
-}
+async function loadOnline(){ let list=document.getElementById('onlineList'); let base=[{nick:"Eva_Marlowa",rank:"Разработчик"},{nick:"Wells_ohhotnik",rank:"Разработчик"}]; try{ let r=await fetch(DB+"/online.json"); let d=await r.json()||{}; Object.values(d).slice(-20).forEach(u=>{ if(!base.find(b=>b.nick===u.nick)) base.push(u); }); }catch(e){} let me=getMyNick(); if(me && !base.find(b=>b.nick===me)) base.push({nick:me,rank:getMyRank()}); list.innerHTML=base.map(u=>`<div class="user-card"><b>${u.nick}</b><br><span style="color:#2ecc71;">● В сети</span><br><span class="${rankClass(u.rank||"Игрок")}">${u.rank||"Игрок"}</span></div>`).join(''); }
+async function loadAdmin(){ document.getElementById('adminList').innerHTML=`<div class="user-card"><b>Wells_ohhotnik</b><br><span class="rank">РАЗРАБОТЧИК</span></div><div class="user-card"><b>Eva_Marlowa</b><br><span class="rank">РАЗРАБОТЧИК</span></div>`; }
+async function createTopic(){ let title=document.getElementById('topicTitle').value.trim(); let text=document.getElementById('topicText').value.trim(); if(!title) return alert('Введи название!'); await fetch(DB+"/topics.json",{method:"POST",body:JSON.stringify({title:title,text:text,author:getMyNick()||"Гость",rank:getMyRank(),closed:false,time:Date.now()})}); alert('Тема создана!'); document.getElementById('topicTitle').value=""; document.getElementById('topicText').value=""; loadTopics(); }
+async function loadTopics(){ let box=document.getElementById('allTopics'); let r=await fetch(DB+"/topics.json"); let data=await r.json()||{}; let entries=Object.entries(data); if(!entries.length){ box.innerHTML="Пока нет тем"; return; } box.innerHTML=entries.reverse().map(([id,t])=>`<div class="topic ${t.closed?'closed':''}" onclick="openTopic('${id}')"><b>${t.title}</b> ${t.closed?'<span style="color:#ff4444;">🔒 ЗАКРЫТА</span>':''}<br><span style="font-size:12px;color:#aaa;">Автор: ${t.author} | ${t.text||""}</span></div>`).join(''); }
 let currentTopicId=null;
-async function openTopic(id){
-  currentTopicId=id;
-  let r=await fetch(DB+"/topics/"+id+".json"); let t=await r.json();
-  document.getElementById('topicModalTitle').innerText=t.title+(t.closed?" 🔒 ЗАКРЫТА":"");
-  document.getElementById('topicModalBody').innerHTML=`<p>${t.text||""}</p><p style="font-size:12px;color:#aaa;">Автор: ${t.author} — <span class="rank ${rankClass(t.rank||"Игрок")}">${(t.rank||"Игрок").toUpperCase()}</span></p>`;
-  // Если закрыта - никто не пишет!
-  if(t.closed){
-    document.getElementById('topicReplyBox').style.display='none';
-    document.getElementById('topicClosedMsg').style.display='block';
-  } else {
-    document.getElementById('topicReplyBox').style.display='block';
-    document.getElementById('topicClosedMsg').style.display='none';
-  }
-  // Кнопки закрыть/открыть - только администрация!
-  if(isAdmin()){
-    document.getElementById('topicAdminBtns').innerHTML=t.closed?`<button onclick="toggleTopic('${id}',false)">🔓 Открыть тему (только администрация)</button>`:`<button onclick="toggleTopic('${id}',true)" style="background:#ff0000;">🔒 Закрыть тему</button>`;
-  } else {
-    document.getElementById('topicAdminBtns').innerHTML=t.closed?`<p style="color:#888;font-size:12px;">Тема закрыта. Открыть может только администрация!</p>`:"";
-  }
-  document.getElementById('topicModalChat').innerHTML="Комментарии к теме...";
-  document.getElementById('modalTopic').style.display='block';
-}
-async function toggleTopic(id,close){
-  if(!isAdmin()) return alert('Только администрация может закрывать/открывать!');
-  await fetch(DB+"/topics/"+id+".json",{method:"PATCH",body:JSON.stringify({closed:close})});
-  alert(close?"Тема закрыта! Никто не может писать!":"Тема открыта!");
-  closeModal(); loadTopics();
-}
-async function sendTopicReply(){
-  let inp=document.getElementById('topicReplyInput'); let txt=inp.value.trim(); if(!txt) return;
-  let r=await fetch(DB+"/topics/"+currentTopicId+".json"); let t=await r.json();
-  if(t.closed) return alert('Тема закрыта! Никто не может писать!');
-  alert('Сообщение в тему отправлено: '+txt);
-  inp.value="";
-}
-
-// ЧАТ ОБЩИЙ
-async function loadChat(){
-  try{ let r=await fetch(DB+"/chat.json"); let d=await r.json()||{}; let arr=Object.values(d).slice(-30);
-  let box=document.getElementById('chatBox'); box.innerHTML=arr.length?arr.map(m=>`<div class="chat-msg"><b>${m.name}:</b> ${m.text}</div>`).join(''):"Пока нет сообщений"; box.scrollTop=box.scrollHeight; }catch(e){}
-}
-async function sendChat(){
-  let inp=document.getElementById('chatInput'); let txt=inp.value.trim(); if(!txt) return;
-  let nick=getMyNick()||"Гость"; if(nick==="Гость") return alert('Сначала регистрация!');
-  await fetch(DB+"/chat.json",{method:"POST",body:JSON.stringify({name:nick,text:txt,time:Date.now()})}); inp.value=""; loadChat();
-}
-document.getElementById('chatInput').addEventListener('keydown',e=>{ if(e.key==='Enter') sendChat(); });
-loadChat(); setInterval(loadChat,3000);
-
-// ПОДАТЬ ЗАЯВКУ - КАЖДАЯ ОТДЕЛЬНО КАК В БЛЕК РАША
-let currentZayavka="Администратор";
-function openZayavkaForm(type){
-  currentZayavka=type;
-  document.getElementById('zayavkaTitle').innerText="📝 Подать заявку — "+type;
-  document.getElementById('zNick').value=getMyNick();
-  document.getElementById('modalZayavka').style.display='block';
-}
-async function sendZayavka(){
-  let nick=document.getElementById('zNick').value.trim();
-  let age=document.getElementById('zAge').value.trim();
-  let why=document.getElementById('zWhy').value.trim();
-  if(!nick||!why) return alert('Заполни ник и причину!');
-  await fetch(DB+"/zayavki.json",{method:"POST",body:JSON.stringify({nick:nick,age:age,why:why,type:currentZayavka,status:"На рассмотрении",closed:false,time:Date.now()})});
-  alert('Заявка на '+currentZayavka+' отправлена! Отдельная заявка!');
-  closeModal(); loadZayavki();
-}
-async function loadZayavki(){
-  let box=document.getElementById('zayavkaList'); if(!box) return;
-  let r=await fetch(DB+"/zayavki.json"); let data=await r.json()||{};
-  let entries=Object.entries(data);
-  if(entries.length===0){ box.innerHTML="Пока нет заявок"; return; }
-  let canManage=isAdmin();
-  box.innerHTML=entries.reverse().map(([id,z])=>{
-    let btns="";
-    if(canManage) btns=`<br><button class="small-btn" onclick="answerZayavka('${id}','${z.nick}','${z.type}','Одобрено ✅')">✅ Одобрить</button><button class="small-btn" style="background:#ff0000!important;" onclick="answerZayavka('${id}','${z.nick}','${z.type}','Отклонено ❌')">❌ Отклонить</button><button class="small-btn" style="background:#333!important;" onclick="closeZayavka('${id}')">🔒 Закрыть тему</button>`;
-    else btns=`<br><span style="font-size:12px;color:#888;">Одобрить может только администрация</span>`;
-    return `<div class="topic ${z.closed?'closed':''}"><b>${z.nick}</b> — хочет: ${z.type} ${z.closed?'<span style="color:#ff4444;">🔒 ЗАКРЫТА</span>':''}<br>Возраст: ${z.age}<br>Причина: ${z.why}<br>Статус: <b>${z.status}</b>${btns}</div>`;
-  }).join('');
-}
-async function answerZayavka(id,nick,type,status){
-  if(!isAdmin()) return alert('Только администрация!');
-  if(getMyRank()==="Зам. Основателя" && type==="Зам. Основателя") return alert('Зам не может выдавать Зам-а!');
-  await fetch(DB+"/zayavki/"+id+".json",{method:"PATCH",body:JSON.stringify({status:status})});
-  if(status.includes("Одобрено")){ await fetch(DB+"/ranks.json",{method:"POST",body:JSON.stringify({nick:nick,rank:type,time:Date.now()})}); alert(nick+" получил "+type); }
-  loadZayavki();
-}
-async function closeZayavka(id){
-  if(!isAdmin()) return alert('Только администрация может закрывать!');
-  await fetch(DB+"/zayavki/"+id+".json",{method:"PATCH",body:JSON.stringify({closed:true,status:"Закрыта 🔒"})});
-  alert('Заявка закрыта! Никто не может писать! Открыть может только администрация!');
-  loadZayavki();
-}
-loadOnline(); loadTopics(); loadZayavki();
-</script>
-</body>
-  </html>
+async function openTopic(id){ currentTopicId=id; let r=await fetch(DB+"/topics/"+id+".json"); let t=await r.json(); document.getElementById('topicModalTitle').innerText=t.title+(t.closed?" 🔒 ЗАКРЫТА":""); document.getElementById('topicModalBody').innerHTML=`<p>${t.text||""}</p><p style="font-size:12px;color:#aaa;">Автор: ${t.author}</p>`; if(t.closed){ document.getElementById('topicReplyBox').style.display='none'; document.getElementById('topicClosedMsg').style.display='block'; } else { document.getElementById('topicReplyBox').style.display='block'; document.getElementById('topicClosedMsg').style.display='none'; } if(isAdmin()){ document.getElementById('topicAdminBtns').innerHTML=t.closed?`<button onclick="toggleTopic('${id}',false)">🔓 Открыть тему</button>`:`<button onclick="toggleTopic('${id}',true)" style="background:#ff0000;">🔒 Закрыть тему</button>`; } else document.getElementById('topicAdminBtns').innerHTML=""; document.getElementById('modalTopic').style.display='block'; }
+async function toggleTopic(id,close){ if(!isAdmin()) return alert('Только администрация!'); await fetch(DB+"/topics/"+id+".json",{method:"PATCH",body:JSON.stringify({closed:close})}); alert(close?"Тема закрыта!":"Тема открыта!"); closeModal(); loadTopics(); }
+async function sendTopicReply(){ let inp=document.getElementById('topicReplyInput'); let txt=inp.value.trim(); if(!txt) return; let r=await fetch(DB+"/topics/"+currentTopicId+".json"); let t=await r.json(); if(t.closed) return alert('Тема закрыта!'); alert('Отправлено: '+txt); inp.value=""; }
+async
