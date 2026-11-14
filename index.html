@@ -6,144 +6,176 @@
 body{background:#0f0f0f;color:#fff;font-family:Arial,sans-serif;padding:10px}
 h1{text-align:center;color:#ff0000;font-size:28px;cursor:pointer;padding:10px}
 .box{background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:14px;margin-bottom:12px}
-input,textarea,select{width:100%;padding:10px;margin:6px 0;background:#222;color:#fff;border:1px solid #444;border-radius:8px}
+input,textarea{width:100%;padding:10px;margin:6px 0;background:#222;color:#fff;border:1px solid #444;border-radius:8px}
 button{width:100%;padding:12px;background:#ff0000;color:#fff;border:none;border-radius:8px;font-weight:900;cursor:pointer;margin:5px 0}
 .small-btn{width:auto;padding:6px 10px;font-size:12px;margin:2px}
 .subforum{display:flex;gap:10px;padding:12px;border-bottom:1px solid #333;cursor:pointer;align-items:center}
 .sub-icon{width:42px;height:42px;background:#222;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .badge{display:inline-block;padding:3px 8px;border-radius:5px;font-size:12px;font-weight:900}
-.badge-orange{background:#ff9900;color:#000}
-.badge-green{background:#2ecc71;color:#fff}
-.badge-red{background:#ff2222;color:#fff}
+.badge-orange{background:#ff9900;color:#000}.badge-green{background:#2ecc71;color:#fff}.badge-red{background:#ff2222;color:#fff}
 .topic{display:flex;gap:10px;padding:12px 8px;border-bottom:1px solid #333;cursor:pointer}
 .avatar{width:42px;height:42px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;flex-shrink:0;overflow:hidden}
 .avatar img{width:100%;height:100%;object-fit:cover}
-.nick{color:#ff2222;font-size:13px;font-weight:700}
-.meta{font-size:12px;color:#888}
-.topbar{display:flex;gap:8px;justify-content:center;margin-bottom:10px}
-.topbar button{width:auto;padding:8px 14px;background:#222}
+.nick{color:#ff2222;font-size:13px;font-weight:700}.meta{font-size:12px;color:#888}
+.topbar{display:flex;gap:6px;justify-content:center;margin-bottom:10px;flex-wrap:wrap}
+.topbar button{width:auto;padding:8px 12px;background:#222;font-size:13px}
+.online-dot{width:10px;height:10px;background:#2ecc71;border-radius:50%;display:inline-block}
+.chat-msg{padding:8px;border-bottom:1px solid #222;font-size:14px}
+.file-btn{display:block;text-align:center;padding:14px;background:#ff9900;color:#000;border-radius:8px;font-weight:900;cursor:pointer;margin:6px 0}
 </style></head>
 <body>
 <h1 onclick="secretTap()">KARATEL TEST</h1>
-<div class="topbar"><button onclick="showPage('main')">🏠 Главная</button><button onclick="showPage('profile')">👤 Профиль</button><button onclick="showPage('frak')">🏴 Фракции</button></div>
+<div class="topbar"><button onclick="showPage('main')">🏠 Главная</button><button onclick="showPage('profile')">👤 Профиль</button><button onclick="showPage('frak')">🏴 Фракции</button><button onclick="showPage('online')">🟢 Кто в сети</button><button onclick="showPage('chat')" style="background:#ff9900;color:#000;">💬 Чат</button><button onclick="openDevPanel()" style="background:#ff0000;">👑 Разработчик</button><button onclick="openAdminPanel()" style="background:#0099ff;">🛡️ Администратор</button></div>
 
-<!-- ГЛАВНАЯ -->
 <div id="page-main">
-<div class="box"><h2>👋 Добро пожаловать!</h2><p style="color:#aaa;font-size:13px;margin-top:6px;">Форум KARATEL TEST. Заходи в Фракции - выбирай раздел - создавай тему!</p>
+<div class="box"><h2>👋 Добро пожаловать!</h2><p style="color:#aaa;font-size:13px;">Форум KARATEL TEST. Заходи в Фракции - выбирай раздел!</p>
 <label>Твой ник:</label><input id="myNickInput" placeholder="Введи ник">
-<button onclick="saveNick()">✅ Сохранить ник</button>
-<div id="myNickShow" style="color:#ffcc00;font-weight:700;margin-top:6px;"></div></div>
-<div class="box"><h3>📁 Фракции</h3><div class="subforum" onclick="showPage('frak')"><div class="sub-icon">🏴</div><div><b>Фракции - KARATEL TEST</b><br><span style="color:#aaa;font-size:13px;">Нажми чтобы войти</span></div></div></div>
-</div>
+<button onclick="saveNick()">✅ Сохранить ник</button><div id="myNickShow" style="color:#ffcc00;font-weight:700;margin-top:6px;"></div></div>
+<div class="box"><h3>📁 Быстрый вход</h3>
+<div class="subforum" onclick="showPage('frak')"><div class="sub-icon">🏴</div><div><b>Фракции - ОПГ / ГОСС / Жалобы</b><br><span style="color:#aaa;font-size:13px;">Нажми чтобы войти</span></div></div>
+<div class="subforum" onclick="showPage('online')"><div class="sub-icon">🟢</div><div><b>Кто в сети</b><br><span style="color:#aaa;font-size:13px;">Кто сейчас онлайн</span></div></div>
+<div class="subforum" onclick="showPage('chat')"><div class="sub-icon">💬</div><div><b>Общий чат - все игроки общаются</b><br><span style="color:#aaa;font-size:13px;">Нажми чтобы писать</span></div></div>
+</div></div>
 
-<!-- ПРОФИЛЬ -->
 <div id="page-profile" style="display:none;">
 <div class="box"><h2>👤 Мой профиль</h2>
-<div id="profileAvatar" class="avatar" style="width:80px;height:80px;font-size:30px;margin:10px auto;">?</div>
+<div id="profileAvatar" class="avatar" style="width:90px;height:90px;font-size:30px;margin:10px auto;">?</div>
 <div id="profileNick" style="text-align:center;font-weight:900;"></div>
 <div id="profileRole" style="text-align:center;color:#ffcc00;font-size:13px;"></div>
-<label>Ссылка на аватарку (будет видна ВСЕМ!):</label>
+<label style="margin-top:12px;display:block;">📸 Фото профиля - выбери файл:</label>
+<label class="file-btn">📁 ВЫБРАТЬ ФОТО С ТЕЛЕФОНА<input id="avatarFile" type="file" accept="image/*" style="display:none;" onchange="previewAvatar(this)"></label>
+<div id="avatarPreviewBox" style="display:none;text-align:center;margin:8px 0;"><img id="avatarPreview" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:2px solid #ff9900;"><br><span style="color:#aaa;font-size:12px;">Так будет выглядеть!</span></div>
+<button onclick="saveAvatarFile()">✅ СОХРАНИТЬ АВАТАРКУ - ВИДЯТ ВСЕ!</button>
+<p style="color:#888;font-size:12px;text-align:center;">Или вставь ссылку:</p>
 <input id="avatarUrl" placeholder="https://...jpg">
-<button onclick="saveAvatar(document.getElementById('avatarUrl').value)">📸 Поставить аватарку</button>
-<p style="color:#888;font-size:12px;">Аватарка сохраняется в базу - её видят все игроки, а не только ты!</p></div>
+<button onclick="saveAvatar(document.getElementById('avatarUrl').value)" style="background:#333!important;">📸 Поставить по ссылке</button></div>
 </div>
 
-<!-- ФРАКЦИИ -->
 <div id="page-frak" style="display:none;">
-<div class="box"><h2>🏴 Фракции</h2>
-<div class="subforum" onclick="openFrak('ОПГ','🏴')"><div class="sub-icon">🏴</div><div><b>ОПГ</b><br><span style="color:#aaa;font-size:13px;">Нажми чтобы войти</span></div></div>
-<div class="subforum" onclick="openFrak('Мафия','💀')"><div class="sub-icon">💀</div><div><b>Мафия</b><br><span style="color:#aaa;font-size:13px;">Нажми чтобы войти</span></div></div>
-<div class="subforum" onclick="openFrak('ГОСС','🛡️')"><div class="sub-icon">🛡️</div><div><b>ГОСС</b><br><span style="color:#aaa;font-size:13px;">Нажми чтобы войти</span></div></div>
+<div id="frakListBox" class="box"><h2>🏴 Фракции</h2>
+<div class="subforum" onclick="openFrak('ОПГ')"><div class="sub-icon">🏴</div><div><b>ОПГ</b><br><span style="color:#aaa;font-size:13px;">Нажми чтобы зайти внутрь</span></div></div>
+<div class="subforum" onclick="openFrak('ГОСС')"><div class="sub-icon">🛡️</div><div><b>ГОСС</b><br><span style="color:#aaa;font-size:13px;">Нажми чтобы зайти внутрь</span></div></div>
+<div class="subforum" onclick="openFrak('Жалобы')"><div class="sub-icon">📝</div><div><b>Жалобы</b><br><span style="color:#aaa;font-size:13px;">Нажми чтобы зайти внутрь</span></div></div>
 </div>
-<div id="frakSubBox" class="box" style="display:none;"><h2 id="frakSubTitle">Разделы</h2><div id="frakSubList"></div></div>
+<div id="frakInside" style="display:none;"><div class="box">
+<button onclick="backToFrak()" style="background:#333!important;">⬅️ Назад к Фракциям</button>
+<h2 id="frakSubTitle" style="margin-top:10px;">Разделы</h2>
+<p style="color:#aaa;font-size:13px;">Выбери организацию:</p>
+<div id="frakSubList"></div></div></div>
 <div id="frakTopicsBox" class="box" style="display:none;">
+<button onclick="backToInside()" style="background:#333!important;">⬅️ Назад</button>
 <h2 id="frakTopicsTitle">Раздел</h2>
 <button onclick="openCreateTopic()" style="background:#ff9900;color:#000;">✏️ ПОДАТЬ ЗАЯВКУ / СОЗДАТЬ ТЕМУ</button>
 <div id="createTopicBox" style="display:none;margin-top:10px;">
-<input id="topicTitle" placeholder="Название темы - например: ЗАЯВЛЕНИЕ НА ВЗЯТИЕ НЕАКТИВА">
-<textarea id="topicText" placeholder="Текст заявления..."></textarea>
-<button onclick="createTopic()">✅ Создать тему</button>
-</div>
-<h3 style="margin-top:14px;">📋 Темы</h3>
-<div id="frakZayavki"></div>
-</div>
+<input id="topicTitle" placeholder="Название темы">
+<textarea id="topicText" placeholder="Текст..."></textarea>
+<button onclick="createTopic()">✅ Создать тему</button></div>
+<h3 style="margin-top:14px;">📋 Темы</h3><div id="frakZayavki"></div></div>
 </div>
 
-<!-- СЕКРЕТКА РАЗРАБОТЧИКА -->
+<div id="page-online" style="display:none;">
+<div class="box"><h2>🟢 Кто в сети</h2><div id="onlineList" style="margin-top:10px;">Загрузка...</div>
+<button onclick="loadOnline()">🔄 Обновить</button></div>
+</div>
+
+<div id="page-chat" style="display:none;">
+<div class="box"><h2>💬 Общий чат - все игроки!</h2>
+<div id="chatBox" style="max-height:350px;overflow:auto;margin:10px 0;"></div>
+<input id="chatInput" placeholder="Напиши сообщение...">
+<button onclick="sendChat()" style="background:#ff9900;color:#000;">📩 Отправить</button>
+<button onclick="loadChat()" style="background:#333;">🔄 Обновить чат</button></div>
+</div>
+
+<div id="page-dev" style="display:none;">
+<div class="box" style="border:2px solid #ff0000;"><h2>👑 Панель Разработчика</h2><p style="color:#aaa;font-size:13px;">Только Разработчик!</p>
+<button onclick="setTitle()">👑 Выдать титул / ранг</button>
+<button onclick="demoteAdmin()">⬇️ Снизить Администратора</button>
+<button onclick="unbanPlayer()">🔓 Разбанить любого</button>
+<button onclick="clearWarnsPlayer()">⚠️ Убрать предупреждение</button>
+<button onclick="resetAll()">🗑️ Обнулить всё</button>
+<button onclick="showPage('main')" style="background:#333!important;">⬅️ Назад</button></div>
+</div>
+
+<div id="page-admin" style="display:none;">
+<div class="box" style="border:2px solid #0099ff;"><h2>🛡️ Панель Администратора</h2><p style="color:#aaa;font-size:13px;">Админ может: Предупреждение и Бан. Только Модер / ГОСС / Хелпер!</p>
+<button onclick="warnPlayer()">⚠️ Дать предупреждение</button>
+<button onclick="banPlayer()">🔨 Забанить</button>
+<button onclick="showPage('main')" style="background:#333!important;">⬅️ Назад</button></div>
+</div>
+
 <div id="secretDev" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#000;z-index:9999;padding:16px;overflow:auto;">
 <h2 style="color:#ff0000;text-align:center;">🔐 СЕКРЕТКА РАЗРАБОТЧИКА</h2>
 <p style="text-align:center;color:#aaa;font-size:13px;">Только Разработчик! Никому не показывать!</p>
-<div class="box" style="border:2px solid #ff0000;"><h3>👑 ВОССТАНОВЛЕНИЕ РАЗРАБОТЧИКА</h3><p style="color:#aaa;font-size:13px;">Если тебя случайно сняли - нажми сюда!</p>
+<div class="box" style="border:2px solid #ff0000;"><h3>👑 ВОССТАНОВЛЕНИЕ РАЗРАБОТЧИКА</h3>
 <button onclick="restoreDev()">👑 ВОССТАНОВИТЬ МЕНЯ КАК РАЗРАБОТЧИКА</button>
 <button onclick="restoreDevAdmin()" style="background:#ff9900!important;">🛡️ ВОССТАНОВИТЬ АДМИНКУ</button></div>
-<div class="box" style="border:2px solid #ff0000;"><h3>🔑 СЕКРЕТНЫЕ КОДЫ</h3><p>Секретный код: <b style="color:#ff0000;">g799m</b></p><button onclick="changeSecretCode()">🔑 СМЕНИТЬ СЕКРЕТНЫЙ КОД</button></div>
-<div class="box" style="border:2px solid #ff0000;"><h3>🗑️ СБРОС</h3>
-<button onclick="resetAll()">🗑️ ОБНУЛИТЬ ВСЁ!</button>
-<button onclick="clearBans()" style="background:#333!important;">🔓 РАЗБАНИТЬ ВСЕХ</button></div>
-<button onclick="document.getElementById('secretDev').style.display='none'" style="background:#333!important;">❌ ЗАКРЫТЬ СЕКРЕТКУ</button>
-</div>
+<div class="box" style="border:2px solid #ff0000;"><h3>🔑 СЕКРЕТНЫЙ КОД: g799m</h3><button onclick="changeSecretCode()">🔑 СМЕНИТЬ КОД</button></div>
+<div class="box" style="border:2px solid #ffcc00;"><h3>👑 ТИТУЛЫ</h3><button onclick="setTitle()" style="background:#ffcc00!important;color:#000!important;">👑 ВЫДАТЬ ТИТУЛ ИГРОКУ</button></div>
+<div class="box" style="border:2px solid #ff0000;"><h3>🗑️ СБРОС</h3><button onclick="resetAll()">🗑️ ОБНУЛИТЬ ВСЁ!</button><button onclick="clearBans()" style="background:#333!important;">🔓 РАЗБАНИТЬ ВСЕХ</button></div>
+<button onclick="document.getElementById('secretDev').style.display='none'" style="background:#333!important;">❌ ЗАКРЫТЬ СЕКРЕТКУ</button></div>
 
 <script>
-const DB="https://karatel-test-default-rtdb.firebaseio.com";
-let currentFrak="", currentSub="";
+const DB="https://karatel-test-d4905-default-rtdb.firebaseio.com";
+let currentFrak="",currentSub="",tempAvatarData="";
 function getMyNick(){return localStorage.getItem('myNick')||"";}
-function saveNick(){let n=document.getElementById('myNickInput').value.trim();if(!n) return alert('Введи ник!');localStorage.setItem('myNick',n);updateNickUI();alert('✅ Ник сохранен: '+n);}
+function saveNick(){let n=document.getElementById('myNickInput').value.trim();if(!n) return alert('Введи ник!');if(localStorage.getItem('banned_'+n)==="1") return alert('⛔ Ты в бане!');localStorage.setItem('myNick',n);updateNickUI();markOnline();alert('✅ Ник сохранен: '+n);}
 function updateNickUI(){let n=getMyNick();document.getElementById('myNickShow').innerText=n?"Твой ник: "+n:"";document.getElementById('profileNick').innerText=n||"Гость";document.getElementById('profileRole').innerText=isDev()?"👑 РАЗРАБОТЧИК":isAdmin()?"🛡️ АДМИН":"👤 ИГРОК";document.getElementById('profileAvatar').innerText=n?n[0].toUpperCase():"?";let av=localStorage.getItem('myAvatar');if(av) document.getElementById('profileAvatar').innerHTML=`<img src="${av}">`;}
-function showPage(p){['main','profile','frak'].forEach(x=>document.getElementById('page-'+x).style.display=x===p?'block':'none');if(p==='frak'){document.getElementById('frakSubBox').style.display='none';document.getElementById('frakTopicsBox').style.display='none';}updateNickUI();}
-function openFrak(f,icon){
-currentFrak=f;currentSub="";
-document.getElementById('frakSubBox').style.display='block';
-document.getElementById('frakTopicsBox').style.display='none';
-document.getElementById('frakSubTitle').innerText="📁 Разделы - "+f;
-let subs=[];
-if(f==="ОПГ") subs=[["Арзамасская ОПГ","🐎"],["Батыревская ОПГ","⚔️"],["Лыткаринская ОПГ","💀"]];
-if(f==="Мафия") subs=[["Русская Мафия","🇷🇺"],["Итальянская Мафия","🇮🇹"]];
-if(f==="ГОСС") subs=[["Полиция","🚔"],["Больница","🏥"],["Армия","🎖️"]];
-document.getElementById('frakSubList').innerHTML=subs.map(s=>`<div class="subforum" onclick="openSub('${s[0]}')"><div class="sub-icon">${s[1]}</div><div><b>${s[0]}</b><br><span style="color:#aaa;font-size:13px;">Нажми чтобы войти</span></div></div>`).join('');
-}
-function openSub(name){currentSub=name;document.getElementById('frakTopicsBox').style.display='block';document.getElementById('frakTopicsTitle').innerText="📁 "+name;loadFrakZayavki();}
+function showPage(p){['main','profile','frak','online','chat','dev','admin'].forEach(x=>document.getElementById('page-'+x).style.display=x===p?'block':'none');if(p==='frak'){document.getElementById('frakInside').style.display='none';document.getElementById('frakListBox').style.display='block';document.getElementById('frakTopicsBox').style.display='none';}if(p==='online') loadOnline();if(p==='chat') loadChat();updateNickUI();markOnline();}
+async function markOnline(){let n=getMyNick();if(!n) return;let safe=n.replace(/[^a-zA-Z0-9_]/g,'_');await fetch(DB+"/online_"+safe+".json",{method:"PUT",body:JSON.stringify({nick:n,time:Date.now()})});}
+async function loadOnline(){let r=await fetch(DB+"/online_.json");let d=await r.json()||{};let arr=Object.values(d).filter(u=>Date.now()-u.time<5*60*1000);if(!arr.length){document.getElementById('onlineList').innerHTML='<div style="color:#aaa;">Сейчас никого нет. Ты первый!</div>';return;}document.getElementById('onlineList').innerHTML="";for(let u of arr){let t=await getTitleFromDB(u.nick);document.getElementById('onlineList').innerHTML+=`<div style="padding:8px;border-bottom:1px solid #222;"><span class="online-dot"></span> <b>${u.nick}</b> ${titleBadge(t)} <span style="color:#888;font-size:12px;">в сети</span></div>`;}}
+function openFrak(f){currentFrak=f;currentSub="";document.getElementById('frakListBox').style.display='none';document.getElementById('frakInside').style.display='block';document.getElementById('frakTopicsBox').style.display='none';document.getElementById('frakSubTitle').innerText="📁 Внутри - "+f;let subs=[];if(f==="ГОСС") subs=[["УМВД","🚔"],["ГИБДД","🚦"],["Армия","🎖️"],["Больница","🏥"],["Мэрия","🏛️"],["СМИ","📰"]];if(f==="ОПГ") subs=[["Арзамасская ОПГ","🐎"],["Батыревская ОПГ","⚔️"],["Лыткаринская ОПГ","💀"]];if(f==="Жалобы") subs=[["Жалобы на игроков","📝"],["Жалобы на админов","⚠️"]];document.getElementById('frakSubList').innerHTML=subs.map(s=>`<div class="subforum" onclick="openSub('${s[0]}')"><div class="sub-icon">${s[1]}</div><div><b>${s[0]}</b><br><span style="color:#aaa;font-size:13px;">Нажми чтобы зайти внутрь</span></div></div>`).join('');}
+function backToFrak(){document.getElementById('frakInside').style.display='none';document.getElementById('frakListBox').style.display='block';document.getElementById('frakTopicsBox').style.display='none';}
+function backToInside(){document.getElementById('frakTopicsBox').style.display='none';document.getElementById('frakInside').style.display='block';}
+function openSub(name){currentSub=name;document.getElementById('frakInside').style.display='none';document.getElementById('frakTopicsBox').style.display='block';document.getElementById('frakTopicsTitle').innerText="📁 "+name;loadFrakZayavki();}
 function openCreateTopic(){let b=document.getElementById('createTopicBox');b.style.display=b.style.display==='none'?'block':'none';}
-async function createTopic(){
-let nick=getMyNick();if(!nick) return alert('Сначала введи ник на главной!');
-let title=document.getElementById('topicTitle').value.trim();let text=document.getElementById('topicText').value.trim();
-if(!title) return alert('Введи название темы!');
-let key="frak_"+currentFrak+"_"+currentSub;
-let obj={nick:nick,why:title,text:text,status:"На рассмотрении",time:Date.now()};
-let r=await fetch(DB+"/"+key+".json",{method:"POST",body:JSON.stringify(obj)});
-if(r.ok){alert('✅ Тема создана!');document.getElementById('topicTitle').value='';document.getElementById('topicText').value='';document.getElementById('createTopicBox').style.display='none';loadFrakZayavki();}
-}
-async function loadFrakZayavki(){
-let b=document.getElementById('frakZayavki');
-let key="frak_"+currentFrak+"_"+currentSub;
-let r=await fetch(DB+"/"+key+".json");let d=await r.json()||{};
-let e=Object.entries(d);
-if(!e.length){b.innerHTML=`<div style="padding:20px;text-align:center;color:#aaa;"><div style="font-size:40px;">📭</div><div style="margin-top:10px;">В этом форуме пока нет ни одной темы.</div><div style="font-size:13px;color:#777;">Нажми ПОДАТЬ ЗАЯВКУ - и твоя тема будет ПЕРВОЙ!</div></div>`;return;}
-b.innerHTML="";
-for(let [id,z] of e.reverse()){
-let nick=z.nick||"Игрок";let title=z.why||"Заявление";
-let badge=`<span class="badge badge-orange">На рассмотрении</span>`;
-if(z.status==="Одобрено") badge=`<span class="badge badge-green">Одобрено</span>`;
-if(z.status==="Отклонено") badge=`<span class="badge badge-red">Отказано</span>`;
-let avHtml=`<div class="avatar">${nick[0].toUpperCase()}</div>`;
-try{let safe=nick.replace(/[^a-zA-Z0-9_]/g,'_');let ar=await fetch(DB+"/avatar_"+safe+".json");let ad=await ar.json();if(ad&&ad.url) avHtml=`<div class="avatar"><img src="${ad.url}"></div>`;}catch(err){}
-let admBtn="";
-if(isAdmin()&&z.status==="На рассмотрении"){admBtn=`<br><button class="small-btn" onclick="event.stopPropagation();answerFrak('${key}','${id}','Одобрено')">✅ Принять</button><button class="small-btn" style="background:#ff0000!important;" onclick="event.stopPropagation();answerFrak('${key}','${id}','Отклонено')">❌ Отклонить</button>`;}
-let div=document.createElement('div');div.className='topic';div.innerHTML=`${avHtml}<div style="flex:1;"><div style="font-weight:700;line-height:1.3;">${badge} KARATEL TEST | ${title}</div><div class="nick">${nick}</div><div class="meta">💬 0 · ${new Date(z.time||Date.now()).toLocaleDateString('ru-RU')}${admBtn}</div></div>`;
-div.onclick=()=>{alert("📌 "+title+"\n\n👤 "+nick+"\n\n"+(z.text||"")+"\n\nСтатус: "+z.status);};
-b.appendChild(div);
-}
-}
+async function createTopic(){let nick=getMyNick();if(!nick) return alert('Сначала введи ник!');let title=document.getElementById('topicTitle').value.trim();let text=document.getElementById('topicText').value.trim();if(!title) return alert('Введи название!');let key="frak_"+currentFrak+"_"+currentSub;let obj={nick:nick,why:title,text:text,status:"На рассмотрении",time:Date.now()};let r=await fetch(DB+"/"+key+".json",{method:"POST",body:JSON.stringify(obj)});if(r.ok){alert('✅ Тема создана!');document.getElementById('topicTitle').value='';document.getElementById('topicText').value='';document.getElementById('createTopicBox').style.display='none';loadFrakZayavki();}}
+async function loadFrakZayavki(){let b=document.getElementById('frakZayavki');let key="frak_"+currentFrak+"_"+currentSub;let r=await fetch(DB+"/"+key+".json");let d=await r.json()||{};let e=Object.entries(d);if(!e.length){b.innerHTML=`<div style="padding:20px;text-align:center;color:#aaa;"><div style="font-size:40px;">📭</div><div style="margin-top:10px;">В этом форуме пока нет ни одной темы.</div><div style="font-size:13px;color:#777;">Нажми ПОДАТЬ ЗАЯВКУ - и твоя тема будет ПЕРВОЙ!</div></div>`;return;}b.innerHTML="";for(let [id,z] of e.reverse()){let nick=z.nick||"Игрок";let title=z.why||"Заявление";let badge=`<span class="badge badge-orange">На рассмотрении</span>`;if(z.status==="Одобрено") badge=`<span class="badge badge-green">Одобрено</span>`;if(z.status==="Отклонено") badge=`<span class="badge badge-red">Отказано</span>`;let avHtml=`<div class="avatar">${nick[0].toUpperCase()}</div>`;try{let safe=nick.replace(/[^a-zA-Z0-9_]/g,'_');let ar=await fetch(DB+"/avatar_"+safe+".json");let ad=await ar.json();if(ad&&ad.url) avHtml=`<div class="avatar"><img src="${ad.url}"></div>`;}catch(err){}let t=await getTitleFromDB(nick);let admBtn="";if(isAdmin()&&z.status==="На рассмотрении"){admBtn=`<br><button class="small-btn" onclick="event.stopPropagation();answerFrak('${key}','${id}','Одобрено')">✅ Принять</button><button class="small-btn" style="background:#ff0000!important;" onclick="event.stopPropagation();answerFrak('${key}','${id}','Отклонено')">❌ Отклонить</button>`;}let div=document.createElement('div');div.className='topic';div.innerHTML=`${avHtml}<div style="flex:1;"><div style="font-weight:700;">${badge} KARATEL TEST | ${title}</div><div class="nick">${nick} ${titleBadge(t)}</div><div class="meta">💬 0 · ${new Date(z.time||Date.now()).toLocaleDateString('ru-RU')}${admBtn}</div></div>`;div.onclick=()=>{alert("📌 "+title+"\n\n👤 "+nick+" ["+t+"]\n\n"+(z.text||"")+"\n\nСтатус: "+z.status);};b.appendChild(div);}}
 async function answerFrak(key,id,st){await fetch(DB+"/"+key+"/"+id+"/status.json",{method:"PUT",body:JSON.stringify(st)});alert('✅ '+st);loadFrakZayavki();}
-async function saveAvatar(url){let nick=getMyNick();if(!nick) return alert('Сначала введи ник!');if(!url) return alert('Вставь ссылку!');let safe=nick.replace(/[^a-zA-Z0-9_]/g,'_');await fetch(DB+"/avatar_"+safe+".json",{method:"PUT",body:JSON.stringify({nick:nick,url:url,time:Date.now()})});localStorage.setItem('myAvatar',url);alert('✅ Аватарка сохранена! Теперь её видят ВСЕ!');updateNickUI();}
-let tapCount=0,lastTap=0;
-function secretTap(){let now=Date.now();if(now-lastTap>2000) tapCount=0;lastTap=now;tapCount++;if(tapCount>=5){tapCount=0;let code=prompt('🔐 Введи секретный код Разработчика:');if(code==="g799m"||code===localStorage.getItem('secretCode')){localStorage.setItem('isDev','1');localStorage.setItem('isAdmin','1');document.getElementById('secretDev').style.display='block';alert('✅ Добро пожаловать, Разработчик!');}else alert('⛔ Неверный код!');}}
-function isDev(){return localStorage.getItem('isDev')==="1";}
-function isAdmin(){return localStorage.getItem('isAdmin')==="1"||isDev();}
-function restoreDev(){localStorage.setItem('isDev','1');localStorage.setItem('isAdmin','1');localStorage.setItem('myRole','Разработчик');alert('👑 Ты восстановлен как РАЗРАБОТЧИК!');location.reload();}
+// ВЫБРАТЬ ФОТО С ТЕЛЕФОНА - НОВОЕ!
+function previewAvatar(input){
+let file=input.files[0];if(!file) return;
+if(file.size>800000){alert('⚠️ Фото слишком большое! Выбери поменьше, до 800КБ');return;}
+let reader=new FileReader();
+reader.onload=function(e){
+tempAvatarData=e.target.result;
+document.getElementById('avatarPreview').src=tempAvatarData;
+document.getElementById('avatarPreviewBox').style.display='block';
+document.getElementById('profileAvatar').innerHTML=`<img src="${tempAvatarData}">`;
+};
+reader.readAsDataURL(file);
+}
+async function saveAvatarFile(){
+let nick=getMyNick();if(!nick) return alert('Сначала введи ник!');
+if(!tempAvatarData) return alert('Сначала нажми ВЫБРАТЬ ФОТО!');
+let safe=nick.replace(/[^a-zA-Z0-9_]/g,'_');
+localStorage.setItem('myAvatar',tempAvatarData);
+await fetch(DB+"/avatar_"+safe+".json",{method:"PUT",body:JSON.stringify({nick:nick,url:tempAvatarData,time:Date.now()})});
+alert('✅ Аватарка сохранена! Видят ВСЕ игроки!');
+updateNickUI();
+}
+async function saveAvatar(url){let nick=getMyNick();if(!nick) return alert('Сначала введи ник!');if(!url) return alert('Вставь ссылку!');let safe=nick.replace(/[^a-zA-Z0-9_]/g,'_');await fetch(DB+"/avatar_"+safe+".json",{method:"PUT",body:JSON.stringify({nick:nick,url:url,time:Date.now()})});localStorage.setItem('myAvatar',url);alert('✅ Аватарка сохранена! Видят ВСЕ!');updateNickUI();}
+async function sendChat(){let nick=getMyNick();if(!nick) return alert('Сначала введи ник!');let txt=document.getElementById('chatInput').value.trim();if(!txt) return;await fetch(DB+"/chat.json",{method:"POST",body:JSON.stringify({nick:nick,text:txt,time:Date.now()})});document.getElementById('chatInput').value='';loadChat();}
+async function loadChat(){let r=await fetch(DB+"/chat.json");let d=await r.json()||{};let e=Object.entries(d).slice(-50);let box=document.getElementById('chatBox');if(!e.length){box.innerHTML='<div style="color:#aaa;text-align:center;padding:20px;">Чат пуст. Ты первый!</div>';return;}box.innerHTML="";for(let [id,m] of e){let t=await getTitleFromDB(m.nick);box.innerHTML+=`<div class="chat-msg"><b style="color:#ff2222;">${m.nick} ${titleBadge(t)}:</b> ${m.text} <span style="color:#777;font-size:11px;">${new Date(m.time).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})}</span></div>`;}box.scrollTop=box.scrollHeight;}
+function getRank(nick){if(nick===getMyNick() && isDev()) return "РАЗРАБОТЧИК";return localStorage.getItem('title_'+nick)||localStorage.getItem('rank_'+nick)||"ИГРОК";}
+function rankLevel(rank){if(rank==="РАЗРАБОТЧИК") return 100;if(rank==="АДМИН"||rank==="АДМИНИСТРАТОР") return 80;if(rank==="ЛИДЕР") return 60;if(rank==="МОДЕР"||rank==="МОДЕРАТОР") return 50;if(rank==="ГОСС") return 40;if(rank==="ХЕЛПЕР") return 30;return 10;}
+function isProtected(nick){if(getRank(nick)==="РАЗРАБОТЧИК") return true;if(localStorage.getItem('protected_'+nick)==="1") return true;return false;}
+function titleBadge(title){if(title==="РАЗРАБОТЧИК") return `<span style="background:#ff0000;color:#fff;padding:2px 6px;border-radius:5px;font-size:11px;font-weight:900;">👑 РАЗРАБОТЧИК</span>`;if(title==="ЛИДЕР") return `<span style="background:#ffcc00;color:#000;padding:2px 6px;border-radius:5px;font-size:11px;font-weight:900;">👑 ЛИДЕР</span>`;if(title==="АДМИН"||title==="АДМИНИСТРАТОР") return `<span style="background:#0099ff;color:#fff;padding:2px 6px;border-radius:5px;font-size:11px;font-weight:900;">🛡️ АДМИН</span>`;if(title==="ЗАМ. ЛИДЕРА") return `<span style="background:#9900ff;color:#fff;padding:2px 6px;border-radius:5px;font-size:11px;font-weight:900;">⭐ ЗАМ. ЛИДЕРА</span>`;if(title==="МОДЕР"||title==="МОДЕРАТОР") return `<span style="background:#00cc66;color:#fff;padding:2px 6px;border-radius:5px;font-size:11px;">🔧 МОДЕР</span>`;if(title==="ГОСС") return `<span style="background:#ff9900;color:#000;padding:2px 6px;border-radius:5px;font-size:11px;">🛡️ ГОСС</span>`;if(title==="ХЕЛПЕР") return `<span style="background:#00ccff;color:#000;padding:2px 6px;border-radius:5px;font-size:11px;">💬 ХЕЛПЕР</span>`;return `<span style="background:#333;color:#aaa;padding:2px 6px;border-radius:5px;font-size:11px;">👤 ИГРОК</span>`;}
+async function getTitleFromDB(nick){try{let safe=nick.replace(/[^a-zA-Z0-9_]/g,'_');let r=await fetch(DB+"/title_"+safe+".json");let d=await r.json();if(d&&d.title) return d.title;}catch(e){}if(nick===getMyNick()&&isDev()) return "РАЗРАБОТЧИК";return localStorage.getItem('title_'+nick)||"ИГРОК";}
+function openDevPanel(){if(!isDev()){alert('⛔ Только Разработчик!');return;}showPage('dev');}
+function openAdminPanel(){if(!isAdmin()&&!isDev()){alert('⛔ Только Администратор!');return;}showPage('admin');}
+function warnPlayer(){let nick=prompt('Кому предупреждение? Ник:');if(!nick) return;if(isProtected(nick)){alert('⛔ Этого игрока нельзя трогать! Он защищён Разработчиком!');return;}if(rankLevel(getRank(nick))>=80){alert('⛔ Админ не может дать предупреждение другому Админу! Только Модер / ГОСС / Хелпер!');return;}let w=parseInt(localStorage.getItem('warn_'+nick)||"0")+1;localStorage.setItem('warn_'+nick,w);alert('⚠️ Предупреждение выдано '+nick+'! Всего: '+w+'/3');if(w>=3){alert('🔨 У '+nick+' 3 предупреждения - авто-бан!');banPlayerByNick(nick);}}
+function banPlayer(){let nick=prompt('Кого забанить? Ник:');if(!nick) return;banPlayerByNick(nick);}
+function banPlayerByNick(nick){if(isProtected(nick)){alert('⛔ НЕЛЬЗЯ ЗАБАНИТЬ! Это Разработчик или назначенный Разработчиком!');return;}let myRank=getRank(getMyNick());let targetRank=getRank(nick);if(rankLevel(targetRank)>=80){alert('⛔ Админ не может забанить Админа! Админы друг друга не банят!');return;}if(rankLevel(targetRank)>rankLevel(myRank)){alert('⛔ Ты не можешь забанить выше себя!');return;}localStorage.setItem('banned_'+nick,"1");alert('🔨 '+nick+' ЗАБАНЕН!');}
+function demoteAdmin(){if(!isDev()){alert('⛔ Только Разработчик может снижать!');return;}let nick=prompt('Кого снизить? Ник Админа:');if(!nick) return;if(getRank(nick)==="РАЗРАБОТЧИК"){alert('⛔ Разработчика нельзя снизить!');return;}localStorage.setItem('title_'+nick,"ИГРОК");localStorage.setItem('rank_'+nick,"ИГРОК");localStorage.setItem('protected_'+nick,"0");alert('⬇️ '+nick+' снижен до ИГРОКА! Сделал Разработчик!');}
+function unbanPlayer(){if(!isDev()){alert('⛔ Только Разработчик!');return;}let nick=prompt('Кого разбанить? Ник:');if(!nick) return;localStorage.setItem('banned_'+nick,"0");alert('🔓 '+nick+' разбанен!');}
+function clearWarnsPlayer(){let nick=prompt('У кого убрать предупреждения? Ник:');if(!nick) return;localStorage.setItem('warn_'+nick,"0");alert('✅ Предупреждения у '+nick+' убраны!');}
+async function setTitle(){if(!isDev()){alert('⛔ Только Разработчик выдаёт титулы!');return;}let nick=prompt('Кому выдать? Ник:');if(!nick) return;let title=prompt('Какой титул? АДМИН / МОДЕР / ГОСС / ХЕЛПЕР / ЛИДЕР / ИГРОК');if(!title) return;let safe=nick.replace(/[^a-zA-Z0-9_]/g,'_');await fetch(DB+"/title_"+safe+".json",{method:"PUT",body:JSON.stringify({nick:nick,title:title})});localStorage.setItem('title_'+nick,title);localStorage.setItem('rank_'+nick,title);localStorage.setItem('protected_'+nick,"1");alert('✅ '+title+' выдан '+nick+'! Он защищён - Админ его не забанит!');}
+let tapCount=0,lastTap=0;function secretTap(){let now=Date.now();if(now-lastTap>2000) tapCount=0;lastTap=now;tapCount++;if(tapCount>=5){tapCount=0;let code=prompt('🔐 Введи секретный код Разработчика:');if(code==="g799m"||code===localStorage.getItem('secretCode')){localStorage.setItem('isDev','1');localStorage.setItem('isAdmin','1');document.getElementById('secretDev').style.display='block';alert('✅ Добро пожаловать, Разработчик!');}else alert('⛔ Неверный код!');}}
+function isDev(){return localStorage.getItem('isDev')==="1";}function isAdmin(){return localStorage.getItem('isAdmin')==="1"||isDev();}
+function restoreDev(){localStorage.setItem('isDev','1');localStorage.setItem('isAdmin','1');alert('👑 Ты восстановлен как РАЗРАБОТЧИК!');location.reload();}
 function restoreDevAdmin(){localStorage.setItem('isAdmin','1');alert('🛡️ Админка восстановлена!');location.reload();}
 function changeSecretCode(){let n=prompt('Введи новый секретный код:');if(n){localStorage.setItem('secretCode',n);alert('✅ Новый код: '+n);}}
 function resetAll(){if(confirm('Точно ОБНУЛИТЬ ВСЁ?')){localStorage.clear();alert('🗑️ Всё обнулено! Зайди через секретку g799m');location.reload();}}
 function clearBans(){alert('🔓 Все разбанены!');}
-updateNickUI();
-</script>
-</body></html>
+updateNickUI();setInterval(markOnline,30000);setInterval(()=>{if(document.getElementById('page-chat').style.display==='block') loadChat();},5000);
+</script></body></html>
